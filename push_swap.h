@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/24 03:57:51 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/02/24 20:10:34 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 # define PUSH_SWAP_H
 
 #include <unistd.h>
+#include <stdio.h>
 
 #endif
