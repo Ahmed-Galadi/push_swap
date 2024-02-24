@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 03:51:08 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/24 04:05:28 by agaladi          ###   ########.fr       */
+/*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
+/*   Updated: 2024/02/24 03:57:51 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
 #include <unistd.h>
 
-int	is_norep(int **nbrs)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (nbrs[i])
-	{
-		
-		i++;
-	}
-}
-
-int	main()
-{
-	return (0);
-}
+#endif
