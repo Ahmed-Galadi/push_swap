@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/25 06:17:27 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/02/25 06:35:02 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+# define ERROR_MSG "Please Enter:\t./push_swap \"<enter your numbers as a string separated with a space>\"\n\
+\t  or:\t./push_swap <enter your numbers directly as args>"
 
 int		ft_isdigit(char character);
 char	**ft_split(char const *s, char c);
