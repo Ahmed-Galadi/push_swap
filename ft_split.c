@@ -6,13 +6,13 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 22:27:33 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/24 22:27:47 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/02/25 03:59:03 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	count_words(const char *str, char d)
+int	count_words(const char *str, char d)
 {
 	int		i;
 	int		count;

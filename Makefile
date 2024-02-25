@@ -6,13 +6,13 @@
 #    By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 22:25:32 by agaladi           #+#    #+#              #
-#    Updated: 2024/02/25 02:09:25 by agaladi          ###   ########.fr        #
+#    Updated: 2024/02/25 05:30:39 by agaladi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 SRCS = ft_split.c utils.c
-CFLAGS = -Wall -Wextra -Werror -c
+CFLAGS = -Wall -Wextra -Werror
 DEPS = push_swap.h
 LIB = push_swap.a
 OUT = push_swap
@@ -21,13 +21,13 @@ OBJS = $(SRCS:.c=.o)
 all: $(OUT)
 
 $(OUT): $(LIB)
-	cc main.c $(LIB) -o $(OUT)
+	cc $(CFLAGS) main.c $(LIB) -o $(OUT)
 
 $(LIB): $(OBJS)
 	ar -rc $(LIB) $(OBJS)
 
 %.o: %c $(DEPS)
-	$(CC) $(CFLAGS) $<
+	$(CC) $(CFLAGS) -c $<
 
 clean:
 	rm -f $(OBJS)
