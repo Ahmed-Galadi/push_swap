@@ -6,20 +6,15 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:51:08 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/24 22:28:23 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/02/25 03:16:35 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 
-
-
-
 int	main()
 {
-	
-
-	
+	printf("%d", ft_isdigit('l'));
 	return (0);
 }
