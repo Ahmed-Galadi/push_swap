@@ -58,9 +58,35 @@ int		*args_to_int_tab(char *args[], int arr_size)
 	return (output_tab);
 }
 
+int 	check_input(char *input)
+{
+	int		i;
+
+	i = 0;
+	while (input[i])
+	{
+		if (!ft_isdigit(input[i]) && input[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+int 	is_valid_args(char **args, int size)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while ()
+	{
+		
+	}
+	return (1);
+}
+
 int main()
 {
-	char *arr[] = {"111", "288", "366", "155", "225", "369", "100"};
+	char *arr[] = {"111", "288", "36m6", "155", "225", "369", "100"};
 	
 	int *int_arr = args_to_int_tab(arr, 7);
 	int i = 0;
@@ -70,5 +96,7 @@ int main()
 		printf("%d ,", int_arr[i]);
 		i++;
 	}
+
+	printf("\n%d", is_valid_args(arr, 7));
 	return (0);
 }
