@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/25 06:35:02 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/02/26 04:37:22 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ char	**ft_split(char const *s, char c);
 int		is_norep(int *nbrs);
 int		check_input(char *input);
 int		count_words(const char *str, char d);
-int		*generate_int_tab(char *nbrs);
+int		*str_to_int_tab(char *nbrs);
+int		*args_to_int_tab(char *args[], int arr_size);
+int		ft_atoi(const char *nptr);
 
 #endif

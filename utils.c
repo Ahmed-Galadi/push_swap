@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:11 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/25 06:59:41 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/02/26 04:29:09 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,18 @@ int		*str_to_int_tab(char *nbrs)
 	return (free(splited_nbrs),nbrs_arr_output);
 }
 
-int		*args_to_int_tab(char **args)
+int		*args_to_int_tab(char *args[], int arr_size)
 {
-	
+	int		*output_tab;
+	int		i;
+
+	output_tab = (int *)malloc(arr_size * sizeof(int));
+	if (!output_tab)
+		return (NULL);
+	i = 0;
+	while(arr_size--)
+	{
+		output_tab[i] = args[i][0];
+		i++;	
+	}
 }

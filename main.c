@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:51:08 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/25 06:43:20 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/02/26 03:18:55 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,20 @@ void	ft_putstr(char *str)
 		write(1, str++, 1);
 }
 
-void error_accured(void)
+void	error_accured(void)
 {
 	ft_putstr(ERROR_MSG);	
 	exit(EXIT_FAILURE);
+}
+
+size_t	arr_size(char **args)
+{
+	size_t	count;
+	
+	count = 0;
+	while(args[count])
+		count++;
+	return (count);
 }
 
 int	main(int argc, char *argv[])
