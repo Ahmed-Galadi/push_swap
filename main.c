@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:51:08 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/26 04:44:43 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/02/26 08:19:08 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ int	main(int argc, char *argv[])
 	if (argc < 2)
 		error_accured();
 	if (argc == 2)
-	{
-		if ()
-	}
-		
+		if (!check_input(argv[1]))
+			error_accured();
+	if (argc > 2)
+		if (!is_valid_args(argv + 1, sizeof(argv + 1) / sizeof(char *)))
+			error_accured();
 	ft_putstr(argv[1]);
 	return (0);
 }

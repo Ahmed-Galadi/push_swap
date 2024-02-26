@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 04:35:35 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/26 04:36:22 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/02/26 08:24:27 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_isspace(char c)
 
 int	ft_atoi(const char *nptr)
 {
-	unsigned long output;
+	unsigned long	output;
 	int				sign;
 	int				i;
 

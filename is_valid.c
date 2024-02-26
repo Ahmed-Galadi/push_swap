@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 06:44:42 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/26 05:07:38 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/02/26 06:52:09 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,24 @@ int 	check_input(char *input)
 			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 int 	is_valid_args(char **args, int size)
 {
 	int		i;
+	int		j;
 
 	i = 0;
-	while (size--)
+	while (i < size)
 	{
-		if (!check_input(args[i]))
-			return (0);
+		j = 0;
+		while (args[i][j])
+		{
+			if (!ft_isdigit(args[i][j]))
+				return (0);
+			j++;
+		}
+		i++;
 	}
 	return (1);
 }
