@@ -1,5 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -33,8 +31,8 @@ int	main(int argc, char *argv[])
 		if (!check_input(argv[1]))
 			error_accured();
 	if (argc > 2)
-		if (!is_valid_args(argv + 1, sizeof(argv + 1) / sizeof(char *)))
+		if (!is_valid_args(argv + 1, argc - 1))
 			error_accured();
-	ft_putstr(argv[1]);
+	ft_putstr(argv[10]);
 	return (0);
 }

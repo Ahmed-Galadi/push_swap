@@ -93,7 +93,7 @@ int 	is_valid_args(char **args, int size)
 
 int main()
 {
-	char *arr[] = {"111", "288", "366", "155", "225", "369", "100"};
+	char *arr[] = {"1f11", "2f88", "366", "155", "225", "369", "100"};
 	
 	int *int_arr = args_to_int_tab(arr, 7);
 	int i = 0;
@@ -104,7 +104,7 @@ int main()
 		i++;
 	}
 
-	printf("\n%d", is_valid_args(arr, 7));
+	printf("\n%d", is_valid_args(arr+1, 6));
 	printf("\n%d", check_input("1245 15 147 15 478 1458 12 4 54 54 54 "));
 	return (0);
 }

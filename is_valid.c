@@ -53,6 +53,7 @@ int 	check_input(char *input)
 	}
 	return (1);
 }
+
 int 	is_valid_args(char **args, int size)
 {
 	int		i;
@@ -72,6 +73,4 @@ int 	is_valid_args(char **args, int size)
 	}
 	return (1);
 }
-
-
 
