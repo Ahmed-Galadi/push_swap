@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:11 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/26 04:29:09 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/02/26 04:41:08 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int		*args_to_int_tab(char *args[], int arr_size)
 	i = 0;
 	while(arr_size--)
 	{
-		output_tab[i] = args[i][0];
+		output_tab[i] = ft_atoi(args[i]);
 		i++;	
 	}
+	return (output_tab);
 }

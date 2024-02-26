@@ -6,11 +6,11 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 06:44:42 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/26 03:15:40 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/02/26 04:43:45 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int		ft_isdigit(char character)
+int		ft_isdigit(char character)
 {
 	return (character >= '0' && character <= '9');
 }
