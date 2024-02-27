@@ -33,6 +33,6 @@ int	main(int argc, char *argv[])
 	if (argc > 2)
 		if (!is_valid_args(argv + 1, argc - 1))
 			error_accured();
-	ft_putstr(argv[10]);
+	printf("working !!");
 	return (0);
 }

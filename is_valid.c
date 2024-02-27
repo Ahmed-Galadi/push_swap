@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 06:44:42 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/26 06:52:09 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/02/27 16:41:58 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ int 	check_input(char *input)
 	i = 0;
 	while (input[i])
 	{
-		if (!ft_isdigit(input[i]) && input[i] != ' ')
+		if ((input[i] == '-' || input[i] == '+') && !ft_isdigit(input[i + 1]))
+			return (0);
+		if (!ft_isdigit(input[i]) && input[i] != ' ' && input[i] != '+' && input[i] != '-')
 			return (0);
 		i++;
 	}
@@ -57,20 +59,15 @@ int 	check_input(char *input)
 int 	is_valid_args(char **args, int size)
 {
 	int		i;
-	int		j;
 
 	i = 0;
 	while (i < size)
 	{
-		j = 0;
-		while (args[i][j])
-		{
-			if (!ft_isdigit(args[i][j]))
+
+			if (!check_input(args[i]))
 				return (0);
-			j++;
-		}
+
 		i++;
 	}
 	return (1);
 }
-
