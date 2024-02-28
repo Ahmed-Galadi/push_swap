@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/26 08:20:19 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/02/28 12:54:51 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,8 @@ int		count_words(const char *str, char d);
 int		*str_to_int_tab(char *nbrs);
 int		*args_to_int_tab(char *args[], int arr_size);
 int		ft_atoi(const char *nptr);
+void	ft_putstr(char *str);
+void	error_accured(void);
+void	input_checker(int argc, char *argv[]);
 
 #endif

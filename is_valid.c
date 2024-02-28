@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 06:44:42 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/27 16:41:58 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/02/27 16:44:03 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,8 @@ int 	is_valid_args(char **args, int size)
 	i = 0;
 	while (i < size)
 	{
-
-			if (!check_input(args[i]))
+		if (!check_input(args[i]))
 				return (0);
-
 		i++;
 	}
 	return (1);
