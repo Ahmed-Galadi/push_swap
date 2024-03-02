@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/28 12:54:51 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:12:37 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int		ft_atoi(const char *nptr);
 void	ft_putstr(char *str);
 void	error_accured(void);
 void	input_checker(int argc, char *argv[]);
+int		*input_formater(int argc, char *argv[]);
 
 #endif

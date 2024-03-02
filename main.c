@@ -12,7 +12,9 @@
 
 int	main(int argc, char *argv[])
 {
-	input_checker(argc, argv);
-	printf("working !!");
+	int		*input_int_arr;
+
+	input_int_arr = input_formater(argc, argv);
+	
 	return (0);
 }
