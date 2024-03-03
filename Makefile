@@ -6,7 +6,7 @@
 #    By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 22:25:32 by agaladi           #+#    #+#              #
-#    Updated: 2024/02/28 12:57:35 by agaladi          ###   ########.fr        #
+#    Updated: 2024/03/03 16:14:05 by agaladi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,12 @@ OBJS = $(SRCS:.c=.o)
 all: $(OUT)
 
 $(OUT): $(LIB) $(DEPS)
-	cc $(CFLAGS) main.c $(LIB) -o $(OUT)
+	$(CC) $(CFLAGS) main.c $(LIB) -o $(OUT)
 
 $(LIB): $(OBJS)
 	ar -rc $(LIB) $(OBJS)
 
-%.o: %c $(DEPS)
+%.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -c $<
 
 clean:

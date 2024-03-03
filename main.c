@@ -13,8 +13,11 @@
 int	main(int argc, char *argv[])
 {
 	int		*input_int_arr;
+	t_stack	*a;
+	t_stack *b;
 
 	input_int_arr = input_formater(argc, argv);
 	
+
 	return (0);
 }

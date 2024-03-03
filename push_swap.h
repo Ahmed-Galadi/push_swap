@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/03/02 16:12:37 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/03/03 16:35:00 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@
 
 # define ERROR_MSG "Please Enter:\t./push_swap \"<enter your numbers as a string separated with a space>\"\n\
 \t  or:\t./push_swap <enter your numbers directly as args>"
+
+typedef struct		s_stack
+{
+	int				content;
+	struct	s_stack	*prev;
+	struct	s_stack	*next;
+	
+}					t_stack;
+
 
 int		ft_isdigit(char character);
 char	**ft_split(char const *s, char c);
