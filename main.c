@@ -10,11 +10,11 @@
 
 #include "push_swap.h"
 
-t_stack *create_stack(int content, stack_t *prev)
+t_stack *create_stack(int content, t_stack *prev)
 {
 	t_stack *output_stack;
 
-	output_stack = (t_stack *)malloc(sizeof(stack_t *));
+	output_stack = (t_stack *)malloc(sizeof(t_stack *));
 	if (!output_stack)
 		return (NULL);
 	output_stack->prev = prev;

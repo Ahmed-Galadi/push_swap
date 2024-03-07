@@ -100,22 +100,51 @@ typedef struct		s_stack
 	
 }					t_stack;
 
-t_stack *create_stack(int content, stack_t *prev)
+t_stack *create_stack(int content, t_stack *prev)
 {
 	t_stack *output_stack;
 
-	output_stack = (t_stack *)malloc(sizeof(stack_t *));
+	output_stack = (t_stack *)malloc(sizeof(t_stack));
 	if (!output_stack)
-		return (NULL);
+		exit(EXIT_FAILURE);
 	output_stack->prev = prev;
 	output_stack->content = content;
 	output_stack->next = NULL;
 	return (output_stack);
 }
 
+t_stack *fill_a_stack(int *int_arr, int arr_len)
+{
+	t_stack	*output_stack;
+	t_stack *current;
+	int		i;
+
+	i = 1;
+	output_stack = create_stack(int_arr[0], NULL);
+	if (!output_stack)
+		exit(EXIT_FAILURE);
+	current = output_stack;
+	while (arr_len--)
+	{
+		current->next = create_stack(int_arr[i], current);
+		current = current->next;
+		i++;
+	}
+	return (output_stack);
+}
 
 int main()
 {
-	
+	int nbrs[] = {1, 2, 3, 4, 5,6,7,5,8,4,5,6,9,5,4,7,8,5,2,1,4,5,8,7,4,5,8};
+	t_stack *stack = fill_a_stack(nbrs, 27);
+
+	t_stack *current = stack;
+	int i = 0;
+	while (i < 27)
+	{
+		printf("%d ", current->content);
+		current = current->next;
+		i++;
+	}
 	return (0);
 }
