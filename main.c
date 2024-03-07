@@ -10,6 +10,32 @@
 
 #include "push_swap.h"
 
+t_stack *create_stack(int content, stack_t *prev)
+{
+	t_stack *output_stack;
+
+	output_stack = (t_stack *)malloc(sizeof(stack_t *));
+	if (!output_stack)
+		return (NULL);
+	output_stack->prev = prev;
+	output_stack->content = content;
+	output_stack->next = NULL;
+	return (output_stack);
+}
+
+// t_stack *fill_a_stack(int *int_arr, int arr_len)
+// {
+// 	t_stack	*output_stack;
+// 	int		i;
+	
+
+// 	i = 0;
+// 	while (arr_len--)
+// 	{
+		
+// 	}
+// }
+
 int	main(int argc, char *argv[])
 {
 	int		*input_int_arr;

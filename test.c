@@ -91,20 +91,31 @@ int 	is_valid_args(char **args, int size)
 	return (1);
 }
 
+
+typedef struct		s_stack
+{
+	int				content;
+	struct	s_stack	*prev;
+	struct	s_stack	*next;
+	
+}					t_stack;
+
+t_stack *create_stack(int content, stack_t *prev)
+{
+	t_stack *output_stack;
+
+	output_stack = (t_stack *)malloc(sizeof(stack_t *));
+	if (!output_stack)
+		return (NULL);
+	output_stack->prev = prev;
+	output_stack->content = content;
+	output_stack->next = NULL;
+	return (output_stack);
+}
+
+
 int main()
 {
-	char *arr[] = {"1f11", "2f88", "366", "155", "225", "369", "100"};
 	
-	int *int_arr = args_to_int_tab(arr, 7);
-	int i = 0;
-
-	while (i < 7)
-	{
-		printf("%d ,", int_arr[i]);
-		i++;
-	}
-
-	printf("\n%d", is_valid_args(arr+1, 6));
-	printf("\n%d", check_input("1245 15 147 15 478 1458 12 4 54 54 54 "));
 	return (0);
 }
