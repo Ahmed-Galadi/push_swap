@@ -6,12 +6,12 @@
 #    By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 22:25:32 by agaladi           #+#    #+#              #
-#    Updated: 2024/03/03 16:14:05 by agaladi          ###   ########.fr        #
+#    Updated: 2024/03/08 18:35:25 by agaladi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-SRCS = ft_split.c utils.c is_valid.c ft_atoi.c error_handler.c
+SRCS = ft_split.c utils.c is_valid.c ft_atoi.c error_handler.c fill_stack.c
 CFLAGS = -Wall -Wextra -Werror
 DEPS = push_swap.h
 LIB = push_swap.a

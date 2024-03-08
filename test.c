@@ -135,12 +135,12 @@ t_stack *fill_a_stack(int *int_arr, int arr_len)
 
 int main()
 {
-	int nbrs[] = {1, 2, 3, 4, 5,6,7,5,8,4,5,6,9,5,4,7,8,5,2,1,4,5,8,7,4,5,8};
-	t_stack *stack = fill_a_stack(nbrs, 27);
+	int nbrs[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+	t_stack *stack = fill_a_stack(nbrs, 20);
 
 	t_stack *current = stack;
 	int i = 0;
-	while (i < 27)
+	while (i < 20)
 	{
 		printf("%d ", current->content);
 		current = current->next;

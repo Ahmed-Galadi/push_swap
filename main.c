@@ -10,40 +10,25 @@
 
 #include "push_swap.h"
 
-t_stack *create_stack(int content, t_stack *prev)
-{
-	t_stack *output_stack;
 
-	output_stack = (t_stack *)malloc(sizeof(t_stack *));
-	if (!output_stack)
-		return (NULL);
-	output_stack->prev = prev;
-	output_stack->content = content;
-	output_stack->next = NULL;
-	return (output_stack);
-}
-
-// t_stack *fill_a_stack(int *int_arr, int arr_len)
-// {
-// 	t_stack	*output_stack;
-// 	int		i;
-	
-
-// 	i = 0;
-// 	while (arr_len--)
-// 	{
-		
-// 	}
-// }
 
 int	main(int argc, char *argv[])
 {
 	int		*input_int_arr;
 	t_stack	*a;
-	t_stack *b;
+	//t_stack *b;
+	int		a_len;
 
-	input_int_arr = input_formater(argc, argv);
+	input_int_arr = input_formater(argc, argv, &a_len);
+	a = fill_a_stack(input_int_arr, a_len);
 	
-
+	t_stack *current = a;
+	int i = 0;
+	while (i < a_len)
+	{
+		printf("%d ", current->content);
+		current = current->next;
+		i++;
+	}
 	return (0);
 }
