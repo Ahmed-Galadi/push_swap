@@ -133,6 +133,21 @@ t_stack *fill_a_stack(int *int_arr, int arr_len)
 	return (output_stack);
 }
 
+int		list_len(t_stack *stack)
+{
+	t_stack		*current;
+	int			len;
+
+	current = stack;
+	len = 0;
+	while (current->next)
+	{
+		current = current->next;
+		len++;
+	}
+	return (len);
+}
+
 int main()
 {
 	int nbrs[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
@@ -146,5 +161,6 @@ int main()
 		current = current->next;
 		i++;
 	}
+	printf("\n%d", list_len(stack));
 	return (0);
 }
