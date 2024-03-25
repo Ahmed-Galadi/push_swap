@@ -159,6 +159,18 @@ void	swap_a(t_stack *stack_a)
 	current->next->content = temp;
 }
 
+t_stack *lst_last(t_stack *lst)
+{
+	t_stack	*current;
+	int		lst_len;
+
+	current = lst;
+	lst_len = list_len(current);
+	while (--lst_len)
+		current = current->next;
+	return (current);
+}
+
 int main()
 {
 	int nbrs[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
@@ -172,6 +184,7 @@ int main()
 		current = current->next;
 		i++;
 	}
-	printf("\n%d", list_len(stack));
+	printf("\nlength = %d", list_len(stack));
+	printf("\nlast content = %d", lst_last(stack)->content);
 	return (0);
 }
