@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/03/25 03:42:04 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/03/25 04:11:03 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ void	input_checker(int argc, char *argv[]);
 int		*input_formater(int argc, char *argv[], int *a_len);
 t_stack *create_stack(int content, t_stack *prev);
 t_stack *fill_a_stack(int *int_arr, int arr_len);
+t_stack *lst_last(t_stack *lst);
 void	swap_a(t_stack *stack_a);
 void	swap_b(t_stack *stack_a);
-t_stack *lst_last(t_stack *lst);
+void	rotate_a(t_stack *stack_a);
+void	rotate_b(t_stack *stack_b);
 
 #endif
