@@ -193,9 +193,9 @@ void	swap_a(t_stack *stack_a)
 t_stack *lst_last(t_stack **lst)
 {
 	t_stack	*current;
-	int len = list_len(lst);
+
 	current = *lst;
-	while (--len)
+	while (current->next != NULL)
 		current = current->next;
 	return (current);
 }
@@ -209,21 +209,6 @@ void	lst_add_first(t_stack **lst, int new_lst_content)
 	*lst = new_lst;
 }
 
-// void	lst_add_last(t_stack **lst, int	content)
-// {
-// 	t_stack *to_add_lst;
-// 	t_stack	*current;
-// 	t_stack *holder;
-
-// 	current = *lst;
-// 	while(current->next)
-// 		current = current->next;
-// 	to_add_lst = create_stack(content, current);
-// 	current->next = to_add_lst;
-// 	while (current->prev)
-// 		current = current->prev;
-// 	*lst = current;
-// }
 void lst_add_last(t_stack **lst, int content) {
     t_stack *to_add_lst = create_stack(content, NULL);
     if (*lst == NULL) {
@@ -250,12 +235,24 @@ void	rotate_a(t_stack **stack_a)
 	free(current);
 }
 
+void	reverse_rotate_a(t_stack **stack_a)
+{
+	t_stack	*last_node;
+	int		tmp;
+
+	last_node = lst_last(stack_a);
+	tmp = last_node->content;
+	last_node->prev->next = NULL;
+	free(last_node);
+	lst_add_first(stack_a, tmp);
+}
 
 int main() {
     int nbrs[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
     t_stack *stack = fill_a_stack(nbrs, 20);
 
-	rotate_a(&stack);
+	reverse_rotate_a(&stack);
+	
     t_stack *current = stack;
     while (current != NULL) {
         printf("%d ", current->content);
