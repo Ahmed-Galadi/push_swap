@@ -235,22 +235,19 @@ void lst_add_last(t_stack **lst, int content) {
         current = current->next;
     }
     current->next = to_add_lst;
-    to_add_lst->prev = current; // Set the previous pointer of the newly added node
+    to_add_lst->prev = current;
 }
 
 void	rotate_a(t_stack **stack_a)
 {
 	t_stack *current;
-
 	int		tmp;
 
 	current = *stack_a;
 	tmp = current->content;
 	lst_add_last(&current, tmp);
-
-
-	current = NULL;
-	
+	*stack_a = current->next;
+	free(current);
 }
 
 
@@ -258,8 +255,7 @@ int main() {
     int nbrs[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
     t_stack *stack = fill_a_stack(nbrs, 20);
 
-    lst_add_last(&stack, 30);
-
+	rotate_a(&stack);
     t_stack *current = stack;
     while (current != NULL) {
         printf("%d ", current->content);
