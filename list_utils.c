@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:06:29 by agaladi           #+#    #+#             */
-/*   Updated: 2024/03/27 21:21:40 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/03/27 23:03:17 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,16 @@ int list_len(t_stack **stack)
     return (len);
 }
 
-t_stack *lst_last(t_stack *lst)
+t_stack *lst_last(t_stack **lst)
 {
 	t_stack	*current;
-	int		lst_len;
 
-	current = lst;
-	lst_len = list_len(current);
-	while (--lst_len)
+	current = *lst;
+	while (current->next != NULL)
 		current = current->next;
 	return (current);
 }
+
 void lst_add_last(t_stack **lst, int content)
 {
     t_stack *to_add_lst;
@@ -58,4 +57,12 @@ void lst_add_last(t_stack **lst, int content)
     }
     current->next = to_add_lst;
     to_add_lst->prev = current;
+}
+void	lst_add_first(t_stack **lst, int new_lst_content)
+{
+	t_stack	*new_lst;
+
+	new_lst = create_stack(new_lst_content, NULL);
+	new_lst->next = *lst;
+	*lst = new_lst;
 }

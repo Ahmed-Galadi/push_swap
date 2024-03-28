@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:39:16 by agaladi           #+#    #+#             */
-/*   Updated: 2024/03/27 22:57:45 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/03/28 04:58:38 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,30 @@ void	reverse_rotate_b(t_stack **stack_b)
 	last_node->prev->next = NULL;
 	free(last_node);
 	lst_add_first(stack_b, tmp);
+}
+
+void push_a(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack *current_a;
+	t_stack *current_b;
+
+	current_a = *stack_a;
+	current_b = *stack_b;
+	*stack_b = current_b->next;
+	current_b->next = *stack_a;
+	current_a->prev = current_b;
+	*stack_a = current_a->prev;
+}
+
+void push_b(t_stack **stack_b, t_stack **stack_a)
+{
+	t_stack *current_a;
+	t_stack *current_b;
+
+	current_a = *stack_a;
+	current_b = *stack_b;
+	*stack_b = current_b->next;
+	current_b->next = *stack_a;
+	current_a->prev = current_b;
+	*stack_a = current_a->prev;
 }

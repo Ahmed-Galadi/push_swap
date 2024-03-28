@@ -247,20 +247,60 @@ void	reverse_rotate_a(t_stack **stack_a)
 	lst_add_first(stack_a, tmp);
 }
 
+void push_a(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack *current_a;
+	t_stack *current_b;
+
+	current_a = *stack_a;
+	current_b = *stack_b;
+	*stack_b = current_b->next;
+	current_b->next = *stack_a;
+	current_a->prev = current_b;
+	*stack_a = current_a->prev;
+}
+
+void push_b(t_stack **stack_b, t_stack **stack_a)
+{
+	t_stack *current_a;
+	t_stack *current_b;
+
+	current_a = *stack_a;
+	current_b = *stack_b;
+	*stack_b = current_b->next;
+	current_b->next = *stack_a;
+	current_a->prev = current_b;
+	*stack_a = current_a->prev;
+}
+
 int main() {
     int nbrs[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+	int nbrs1[] = {30,40,50,60,70,80,90};
     t_stack *stack = fill_a_stack(nbrs, 20);
+	t_stack *stack1 = fill_a_stack(nbrs1, 7);
 
-	reverse_rotate_a(&stack);
-	
+	push_a(&stack, &stack1);
+	push_a(&stack, &stack1);
+	push_a(&stack, &stack1);
+	push_b(&stack, &stack1);
+	push_b(&stack, &stack1);
+	push_b(&stack, &stack1);
+
     t_stack *current = stack;
+	printf("stack\n");
     while (current != NULL) {
         printf("%d ", current->content);
         current = current->next;
     }
-    printf("\nlength = %d", list_len(&stack));
-    printf("\nfirst content : %d", stack->content);
-    printf("\nlast content = %d", lst_last(&stack)->content);
+	printf("\nstack1\n");
+	current = stack1;
+    while (current != NULL) {
+        printf("%d ", current->content);
+        current = current->next;
+    }
+    printf("\nstack length = %d | stack1 length = %d", list_len(&stack), list_len(&stack1));
+    printf("\nstackfirst content : %d | stack1 first content : %d", stack->content, stack1->content);
+    printf("\nstack last content = %d | stack1 last content = %d", lst_last(&stack)->content, lst_last(&stack1)->content);
 
     return 0;
 }
