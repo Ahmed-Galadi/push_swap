@@ -21,6 +21,8 @@ int	main(int argc, char *argv[])
 
 	input_int_arr = input_formater(argc, argv, &a_len);
 	a = fill_a_stack(input_int_arr, a_len);
+
+	swap_a(a);
 	
 	t_stack *current = a;
 	int i = 0;
