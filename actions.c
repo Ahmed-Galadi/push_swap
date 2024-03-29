@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:39:16 by agaladi           #+#    #+#             */
-/*   Updated: 2024/03/28 04:58:38 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/03/29 04:58:31 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,52 +34,63 @@ void	swap_b(t_stack *stack_b)
 	current->next->content = temp;
 }
 
-void	rotate_a(t_stack **stack_a)
+void rotate_a(t_stack **stack_a)
 {
+	t_stack *last_node;
 	t_stack *current;
-	int		tmp;
-
-	current = *stack_a;
-	tmp = current->content;
-	lst_add_last(&current, tmp);
-	*stack_a = current->next;
-	free(current);
-}
-
-void	rotate_b(t_stack **stack_b)
-{
-	t_stack *current;
-	int		tmp;
-
-	current = *stack_b;
-	tmp = current->content;
-	lst_add_last(&current, tmp);
-	*stack_b = current->next;
-	free(current);
-}
-
-void	reverse_rotate_a(t_stack **stack_a)
-{
-	t_stack	*last_node;
-	int		tmp;
 
 	last_node = lst_last(stack_a);
-	tmp = last_node->content;
-	last_node->prev->next = NULL;
-	free(last_node);
-	lst_add_first(stack_a, tmp);
+	current = *stack_a;
+	*stack_a = current->next;
+	current->next->prev = NULL;
+	current->prev = last_node;
+	current->next = NULL;
+	last_node->next = current;
 }
 
-void	reverse_rotate_b(t_stack **stack_b)
+void rotate_b(t_stack **stack_b)
 {
-	t_stack	*last_node;
-	int		tmp;
+	t_stack *last_node;
+	t_stack *current;
 
 	last_node = lst_last(stack_b);
-	tmp = last_node->content;
+	current = *stack_b;
+	*stack_b = current->next;
+	current->next->prev = NULL;
+	current->prev = last_node;
+	current->next = NULL;
+	last_node->next = current;
+}
+
+void reverse_rotate_a(t_stack **stack_a)
+{
+	t_stack	*last_node;
+	t_stack	*current;
+
+	last_node = lst_last(stack_a);
+	current = *stack_a;
+	current->prev = last_node;
+	last_node->next = current;
 	last_node->prev->next = NULL;
-	free(last_node);
-	lst_add_first(stack_b, tmp);
+	last_node->prev = NULL;
+	current = current->prev;
+	*stack_a = current;
+	
+}
+
+void reverse_rotate_b(t_stack **stack_b)
+{
+	t_stack	*last_node;
+	t_stack	*current;
+
+	last_node = lst_last(stack_b);
+	current = *stack_b;
+	current->prev = last_node;
+	last_node->next = current;
+	last_node->prev->next = NULL;
+	last_node->prev = NULL;
+	current = current->prev;
+	*stack_b = current;
 }
 
 void push_a(t_stack **stack_a, t_stack **stack_b)
