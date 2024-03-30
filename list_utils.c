@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:06:29 by agaladi           #+#    #+#             */
-/*   Updated: 2024/03/29 21:08:57 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/03/30 02:37:07 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ int list_len(t_stack **stack)
 t_stack *lst_last(t_stack **lst)
 {
 	t_stack	*current;
-
+	
+	if (!*lst)
+		return (NULL);
 	current = *lst;
 	while (current->next != NULL)
 		current = current->next;

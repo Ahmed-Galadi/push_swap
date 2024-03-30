@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:39:16 by agaladi           #+#    #+#             */
-/*   Updated: 2024/03/29 21:05:36 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/03/30 03:42:39 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	swap_a(t_stack *stack_a)
 	t_stack	*current;
 	int		temp;
 
+	if (!stack_a)
+		return ;
 	current = stack_a;
 	temp = current->content;
 	current->content = current->next->content;
@@ -28,6 +30,8 @@ void	swap_b(t_stack *stack_b)
 	t_stack	*current;
 	int		temp;
 
+	if (!stack_b)
+		return ;
 	current = stack_b;
 	temp = current->content;
 	current->content = current->next->content;
@@ -39,6 +43,8 @@ void rotate_a(t_stack **stack_a)
 	t_stack *last_node;
 	t_stack *current;
 
+	if (!*stack_a)
+		return;
 	last_node = lst_last(stack_a);
 	current = *stack_a;
 	*stack_a = current->next;
@@ -53,6 +59,8 @@ void rotate_b(t_stack **stack_b)
 	t_stack *last_node;
 	t_stack *current;
 
+	if (!*stack_b)
+		return;
 	last_node = lst_last(stack_b);
 	current = *stack_b;
 	*stack_b = current->next;
@@ -67,6 +75,8 @@ void reverse_rotate_a(t_stack **stack_a)
 	t_stack	*last_node;
 	t_stack	*current;
 
+	if (!*stack_a)
+		return;
 	last_node = lst_last(stack_a);
 	current = *stack_a;
 	current->prev = last_node;
@@ -83,6 +93,8 @@ void reverse_rotate_b(t_stack **stack_b)
 	t_stack	*last_node;
 	t_stack	*current;
 
+	if (!*stack_b)
+		return;
 	last_node = lst_last(stack_b);
 	current = *stack_b;
 	current->prev = last_node;
@@ -100,10 +112,24 @@ void push_a(t_stack **stack_a, t_stack **stack_b)
 
 	current_a = *stack_a;
 	current_b = *stack_b;
-	*stack_b = current_b->next;
-	current_b->next = *stack_a;
-	current_a->prev = current_b;
-	*stack_a = current_a->prev;
+	if (!*stack_b)
+		exit(EXIT_FAILURE);
+	else if (!*stack_a)
+	{
+		current_a = current_b;
+		current_b = current_b->next;
+		current_b->prev = NULL;
+		current_a->next = NULL;
+		*stack_a = current_a;
+		*stack_b = current_b;
+	}
+	else
+	{
+		*stack_b = current_b->next;
+		current_b->next = *stack_a;
+		current_a->prev = current_b;
+		*stack_a = current_a->prev;
+	}
 }
 
 void push_b(t_stack **stack_b, t_stack **stack_a)
@@ -113,8 +139,22 @@ void push_b(t_stack **stack_b, t_stack **stack_a)
 
 	current_a = *stack_a;
 	current_b = *stack_b;
-	*stack_b = current_b->next;
-	current_b->next = *stack_a;
-	current_a->prev = current_b;
-	*stack_a = current_a->prev;
+	if (!*stack_b)
+		exit(EXIT_FAILURE);
+	else if (!*stack_a)
+	{
+		current_a = current_b;
+		current_b = current_b->next;
+		current_b->prev = NULL;
+		current_a->next = NULL;
+		*stack_a = current_a;
+		*stack_b = current_b;
+	}
+	else
+	{
+		*stack_b = current_b->next;
+		current_b->next = *stack_a;
+		current_a->prev = current_b;
+		*stack_a = current_a->prev;
+	}
 }
