@@ -1,6 +1,12 @@
 #include <libc.h>
 
 
+void	ft_putstr(char *str)
+{
+	while (*str)
+		write(1, str++, 1);
+}
+
 int		ft_isdigit(char character)
 {
 	return (character >= '0' && character <= '9');
@@ -143,18 +149,6 @@ int list_len(t_stack **stack) {
     return len;
 }
 
-void	swap_a(t_stack *stack_a)
-{
-	t_stack	*current;
-	int		temp;
-
-	if (!stack_a)
-		return ;
-	current = stack_a;
-	temp = current->content;
-	current->content = current->next->content;
-	current->next->content = temp;
-}
 
 t_stack *lst_last(t_stack **lst)
 {
@@ -168,95 +162,7 @@ t_stack *lst_last(t_stack **lst)
 	return (current);
 }
 
-void	lst_add_first(t_stack **lst, int new_lst_content)
-{
-	t_stack	*new_lst;
 
-	new_lst = create_stack(new_lst_content, NULL);
-	new_lst->next = *lst;
-	*lst = new_lst;
-}
-
-void lst_add_last(t_stack **lst, int content) {
-    t_stack *to_add_lst = create_stack(content, NULL);
-    if (*lst == NULL) {
-        *lst = to_add_lst;
-        return;
-    }
-    t_stack *current = *lst;
-    while (current->next != NULL) {
-        current = current->next;
-    }
-    current->next = to_add_lst;
-    to_add_lst->prev = current;
-}
-
-void rotate_a(t_stack **stack_a)
-{
-	t_stack *last_node;
-	t_stack *current;
-
-	if (!*stack_a)
-		return;
-	last_node = lst_last(stack_a);
-	current = *stack_a;
-	*stack_a = current->next;
-	current->next->prev = NULL;
-	current->prev = last_node;
-	current->next = NULL;
-	last_node->next = current;
-}
-
-void rotate_b(t_stack **stack_b)
-{
-	t_stack *last_node;
-	t_stack *current;
-
-	if (!*stack_b)
-		return;
-	last_node = lst_last(stack_b);
-	current = *stack_b;
-	*stack_b = current->next;
-	current->next->prev = NULL;
-	current->prev = last_node;
-	current->next = NULL;
-	last_node->next = current;
-}
-
-void reverse_rotate_a(t_stack **stack_a)
-{
-	t_stack	*last_node;
-	t_stack	*current;
-
-	if (!*stack_a)
-		return;
-	last_node = lst_last(stack_a);
-	current = *stack_a;
-	current->prev = last_node;
-	last_node->next = current;
-	last_node->prev->next = NULL;
-	last_node->prev = NULL;
-	current = current->prev;
-	*stack_a = current;
-	
-}
-
-void reverse_rotate_b(t_stack **stack_b)
-{
-	t_stack	*last_node;
-	t_stack	*current;
-
-	if (!*stack_b)
-		return;
-	last_node = lst_last(stack_b);
-	current = *stack_b;
-	current->prev = last_node;
-	last_node->next = current;
-	last_node->prev->next = NULL;
-	last_node->prev = NULL;
-	current = current->prev;
-	*stack_b = current;
-}
 
 void	print_list(t_stack *stack, char *name)
 {
@@ -271,69 +177,24 @@ void	print_list(t_stack *stack, char *name)
 }
 
 
-void push_a(t_stack **stack_a, t_stack **stack_b)
+
+
+
+void	sort_three_nbrs(t_stack **stack_a)
 {
-	t_stack *current_a;
-	t_stack *current_b;
-
-	current_a = *stack_a;
-	current_b = *stack_b;
-	if (!*stack_b)
-		exit(EXIT_FAILURE);
-	else if (!*stack_a)
-	{
-		current_a = current_b;
-		current_b = current_b->next;
-		current_b->prev = NULL;
-		current_a->next = NULL;
-		*stack_a = current_a;
-		*stack_b = current_b;
-	}
-	else
-	{
-		*stack_b = current_b->next;
-		current_b->next = *stack_a;
-		current_a->prev = current_b;
-		*stack_a = current_a->prev;
-	}
-}
-
-void push_b(t_stack **stack_b, t_stack **stack_a)
-{
-	t_stack *current_a;
-	t_stack *current_b;
-
-	current_a = *stack_a;
-	current_b = *stack_b;
-	if (!*stack_b)
-		exit(EXIT_FAILURE);
-	else if (!*stack_a)
-	{
-		current_a = current_b;
-		current_b = current_b->next;
-		current_b->prev = NULL;
-		current_a->next = NULL;
-		*stack_a = current_a;
-		*stack_b = current_b;
-	}
-	else
-	{
-		*stack_b = current_b->next;
-		current_b->next = *stack_a;
-		current_a->prev = current_b;
-		*stack_a = current_a->prev;
-	}
+	
 }
 
 int main() {
     int nbrs[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 	int nbrs1[] = {30,40,50,60,70,80,90};
+	int nbrs_to_sort[] = {45,65,35}
     // t_stack *stack = fill_a_stack(nbrs, 20);
-	t_stack *stack = NULL;
-	t_stack *stack1 = fill_a_stack(nbrs1, 7);
+	// t_stack *stack = NULL;
+	// t_stack *stack1 = fill_a_stack(nbrs1, 7);
 	// t_stack *stack1 = NULL;
 
-	swap_a(stack);
+	
 
     // printf("\nstack length = %d | stack1 length = %d", list_len(&stack), list_len(&stack1));
     // printf("\nstackfirst content : %d | stack1 first content : %d", stack->content, stack1->content);

@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:39:16 by agaladi           #+#    #+#             */
-/*   Updated: 2024/03/30 03:42:39 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/03/30 04:05:08 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	swap_a(t_stack *stack_a)
 	temp = current->content;
 	current->content = current->next->content;
 	current->next->content = temp;
+	ft_putstr("\nsa");
 }
 
 void	swap_b(t_stack *stack_b)
@@ -36,6 +37,14 @@ void	swap_b(t_stack *stack_b)
 	temp = current->content;
 	current->content = current->next->content;
 	current->next->content = temp;
+	ft_putstr("\nsb");
+}
+
+void	swap_both(t_stack *stack_a, t_stack *stack_b)
+{
+	swap_a(stack_a);
+	swap_b(stack_b);
+	ft_putstr("\nss");
 }
 
 void rotate_a(t_stack **stack_a)
@@ -52,6 +61,7 @@ void rotate_a(t_stack **stack_a)
 	current->prev = last_node;
 	current->next = NULL;
 	last_node->next = current;
+	ft_putstr("\nra");
 }
 
 void rotate_b(t_stack **stack_b)
@@ -68,6 +78,14 @@ void rotate_b(t_stack **stack_b)
 	current->prev = last_node;
 	current->next = NULL;
 	last_node->next = current;
+	ft_putstr("\nrb");
+}
+
+void	rotate_both(t_stack **stack_a, t_stack **stack_b)
+{
+	rotate_a(stack_a);
+	rotate_b(stack_b);
+	ft_putstr("\nrr");
 }
 
 void reverse_rotate_a(t_stack **stack_a)
@@ -85,7 +103,7 @@ void reverse_rotate_a(t_stack **stack_a)
 	last_node->prev = NULL;
 	current = current->prev;
 	*stack_a = current;
-	
+	ft_putstr("\nrra");
 }
 
 void reverse_rotate_b(t_stack **stack_b)
@@ -103,6 +121,14 @@ void reverse_rotate_b(t_stack **stack_b)
 	last_node->prev = NULL;
 	current = current->prev;
 	*stack_b = current;
+	ft_putstr("\nrrb");
+}
+
+void	reverse_rotate_both(t_stack **stack_a, t_stack **stack_b)
+{
+	reverse_rotate_a(stack_a);
+	reverse_rotate_b(stack_b);
+	ft_putstr("\nrrr");
 }
 
 void push_a(t_stack **stack_a, t_stack **stack_b)
@@ -130,6 +156,7 @@ void push_a(t_stack **stack_a, t_stack **stack_b)
 		current_a->prev = current_b;
 		*stack_a = current_a->prev;
 	}
+	ft_putstr("\npa");
 }
 
 void push_b(t_stack **stack_b, t_stack **stack_a)
@@ -157,4 +184,5 @@ void push_b(t_stack **stack_b, t_stack **stack_a)
 		current_a->prev = current_b;
 		*stack_a = current_a->prev;
 	}
+	ft_putstr("\npb");
 }
