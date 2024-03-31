@@ -10,27 +10,30 @@
 
 #include "push_swap.h"
 
+void	print_list(t_stack *stack, char *name)
+{
+	t_stack	*current;
 
+	current = stack;
+	printf("\nstack_%s\n", name);
+    while (current != NULL) {
+        printf("%d ", current->content);
+        current = current->next;
+    }
+}
 
 int	main(int argc, char *argv[])
 {
 	int		*input_int_arr;
 	t_stack	*a;
-	//t_stack *b;
+	t_stack *b;
 	int		a_len;
 
 	input_int_arr = input_formater(argc, argv, &a_len);
 	a = fill_a_stack(input_int_arr, a_len);
+	b = NULL;
 
-	swap_a(a);
-	
-	t_stack *current = a;
-	int i = 0;
-	while (i < a_len)
-	{
-		printf("%d ", current->content);
-		current = current->next;
-		i++;
-	}
+	sort_three_nbrs(&a);
+	print_list(a, "a");
 	return (0);
 }

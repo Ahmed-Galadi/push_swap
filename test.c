@@ -177,28 +177,282 @@ void	print_list(t_stack *stack, char *name)
 }
 
 
+// *-----------------------------------------------------*
 
+void	swap_a(t_stack *stack_a)
+{
+	t_stack	*current;
+	int		temp;
 
+	if (!stack_a)
+		return ;
+	current = stack_a;
+	temp = current->content;
+	current->content = current->next->content;
+	current->next->content = temp;
+	ft_putstr("\nsa");
+}
+
+void	swap_b(t_stack *stack_b)
+{
+	t_stack	*current;
+	int		temp;
+
+	if (!stack_b)
+		return ;
+	current = stack_b;
+	temp = current->content;
+	current->content = current->next->content;
+	current->next->content = temp;
+	ft_putstr("\nsb");
+}
+
+void	swap_both(t_stack *stack_a, t_stack *stack_b)
+{
+	swap_a(stack_a);
+	swap_b(stack_b);
+	ft_putstr("\nss");
+}
+
+void rotate_a(t_stack **stack_a)
+{
+	t_stack *last_node;
+	t_stack *current;
+
+	if (!*stack_a)
+		return;
+	last_node = lst_last(stack_a);
+	current = *stack_a;
+	*stack_a = current->next;
+	current->next->prev = NULL;
+	current->prev = last_node;
+	current->next = NULL;
+	last_node->next = current;
+	ft_putstr("\nra");
+}
+
+void rotate_b(t_stack **stack_b)
+{
+	t_stack *last_node;
+	t_stack *current;
+
+	if (!*stack_b)
+		return;
+	last_node = lst_last(stack_b);
+	current = *stack_b;
+	*stack_b = current->next;
+	current->next->prev = NULL;
+	current->prev = last_node;
+	current->next = NULL;
+	last_node->next = current;
+	ft_putstr("\nrb");
+}
+
+void	rotate_both(t_stack **stack_a, t_stack **stack_b)
+{
+	rotate_a(stack_a);
+	rotate_b(stack_b);
+	ft_putstr("\nrr");
+}
+
+void reverse_rotate_a(t_stack **stack_a)
+{
+	t_stack	*last_node;
+	t_stack	*current;
+
+	if (!*stack_a)
+		return;
+	last_node = lst_last(stack_a);
+	current = *stack_a;
+	current->prev = last_node;
+	last_node->next = current;
+	last_node->prev->next = NULL;
+	last_node->prev = NULL;
+	current = current->prev;
+	*stack_a = current;
+	ft_putstr("\nrra");
+}
+
+void reverse_rotate_b(t_stack **stack_b)
+{
+	t_stack	*last_node;
+	t_stack	*current;
+
+	if (!*stack_b)
+		return;
+	last_node = lst_last(stack_b);
+	current = *stack_b;
+	current->prev = last_node;
+	last_node->next = current;
+	last_node->prev->next = NULL;
+	last_node->prev = NULL;
+	current = current->prev;
+	*stack_b = current;
+	ft_putstr("\nrrb");
+}
+
+void	reverse_rotate_both(t_stack **stack_a, t_stack **stack_b)
+{
+	reverse_rotate_a(stack_a);
+	reverse_rotate_b(stack_b);
+	ft_putstr("\nrrr");
+}
+
+void push_a(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack *current_a;
+	t_stack *current_b;
+
+	current_a = *stack_a;
+	current_b = *stack_b;
+	if (!*stack_b)
+		exit(EXIT_FAILURE);
+	else if (!*stack_a)
+	{
+		current_a = current_b;
+		current_b = current_b->next;
+		current_b->prev = NULL;
+		current_a->next = NULL;
+		*stack_a = current_a;
+		*stack_b = current_b;
+	}
+	else
+	{
+		*stack_b = current_b->next;
+		current_b->next = *stack_a;
+		current_a->prev = current_b;
+		*stack_a = current_a->prev;
+	}
+	ft_putstr("\npa");
+}
+
+void push_b(t_stack **stack_b, t_stack **stack_a)
+{
+	t_stack *current_a;
+	t_stack *current_b;
+
+	current_a = *stack_a;
+	current_b = *stack_b;
+	if (!*stack_b)
+		exit(EXIT_FAILURE);
+	else if (!*stack_a)
+	{
+		current_a = current_b;
+		current_b = current_b->next;
+		current_b->prev = NULL;
+		current_a->next = NULL;
+		*stack_a = current_a;
+		*stack_b = current_b;
+	}
+	else
+	{
+		*stack_b = current_b->next;
+		current_b->next = *stack_a;
+		current_a->prev = current_b;
+		*stack_a = current_a->prev;
+	}
+	ft_putstr("\npb");
+}
+// *-----------------------------------------------------*
+//					2			1		   3
+// case_1 :		  midle      little       big
+
+int	is_case_1(int first, int second, int third)
+{
+	if (first > second && first < third)
+	{
+		if (second < third)
+			return (1);
+		else
+			return (0);
+	}
+	else
+		return (0);
+}
+
+//				   3		  2		     1
+// case_2 :		  big      middle      little
+int is_case_2(int first, int second, int third)
+{
+	if (first > second && first > third)
+	{
+		if (second > third)
+			return (1);
+		else 
+			return (0);
+	}
+	else 
+		return (0);
+}
+
+//				   3		   1		     2
+// case_3 :		  big        little        middle
+int is_case_3(int first, int second, int third)
+{
+	if (first > second && first > third)
+	{
+		if (second < third)
+			return (1);
+		else
+			return (0);
+	}
+	else
+		return (0);
+}
+
+//                   1         3           2  
+// case_4 :		  little      big       middle
+int is_case_4(int first, int second, int third)
+{
+	if (first < second && first < third)
+	{
+		if (second > third)
+			return (1);
+		else
+			return (0);
+	}
+	else 
+		return (0);
+}
 
 void	sort_three_nbrs(t_stack **stack_a)
 {
-	
+	t_stack	*stack;
+	int		first;
+	int		second;
+	int		third;
+
+	stack = *stack_a;
+	first = stack->content;
+	second = stack->next->content;
+	third = stack->next->next->content;
+	if (is_case_1(first, second, third))
+		swap_a(*stack_a);
+	else if (is_case_2(first, second, third))
+	{
+		swap_a(*stack_a);
+		reverse_rotate_a(stack_a);
+	}
+	else if (is_case_3(first, second, third))
+		rotate_a(stack_a);
+	else if (is_case_4(first, second, third))
+	{
+		swap_a(*stack_a);
+		rotate_a(stack_a);
+	}
+	else
+		reverse_rotate_a(stack_a);
 }
 
-int main() {
-    int nbrs[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
-	int nbrs1[] = {30,40,50,60,70,80,90};
-	int nbrs_to_sort[] = {45,65,35}
-    // t_stack *stack = fill_a_stack(nbrs, 20);
-	// t_stack *stack = NULL;
-	// t_stack *stack1 = fill_a_stack(nbrs1, 7);
-	// t_stack *stack1 = NULL;
+int main()
+{
+	int nbrs_to_sort[] = {2255, 2296, 2254};
 
-	
+	t_stack *stack_a;
+	t_stack *stack_b;
 
-    // printf("\nstack length = %d | stack1 length = %d", list_len(&stack), list_len(&stack1));
-    // printf("\nstackfirst content : %d | stack1 first content : %d", stack->content, stack1->content);
-    // printf("\nstack last content = %d | stack1 last content = %d", lst_last(&stack)->content, lst_last(&stack1)->content);
-
+	stack_a = fill_a_stack(nbrs_to_sort, 3);
+	sort_three_nbrs(&stack_a);
+	print_list(stack_a, "a");
     return 0;
 }
