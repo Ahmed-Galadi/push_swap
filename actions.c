@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:39:16 by agaladi           #+#    #+#             */
-/*   Updated: 2024/04/02 05:58:34 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/04/02 06:40:16 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,8 @@ void	push_a(t_stack **stack_a, t_stack **stack_b)
 	{
 		current_a = current_b;
 		current_b = current_b->next;
-		current_b->prev  = NULL;
-		current_a->next  = NULL;
+		current_b->prev = NULL;
+		current_a->next = NULL;
 		*stack_a = current_a;
 		*stack_b = current_b;
 	}
@@ -159,30 +159,30 @@ void	push_a(t_stack **stack_a, t_stack **stack_b)
 	ft_putstr("\npa");
 }
 
-void push_b(t_stack **stack_b, t_stack **stack_a)
+void	push_b(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *current_a;
-	t_stack *current_b;
+	t_stack	*current_a;
+	t_stack	*current_b;
 
 	current_a = *stack_a;
 	current_b = *stack_b;
-	if (!*stack_b)
-		exit(EXIT_FAILURE);
-	else if (!*stack_a)
+	if (!current_a)
+		return ;
+	if (!current_b)
 	{
-		current_a = current_b;
-		current_b = current_b->next;
-		current_b->prev = NULL;
-		current_a->next = NULL;
+		current_b = current_a;
+		current_a = current_a->next;
+		current_a->prev = NULL;
+		current_b->next = NULL;
 		*stack_a = current_a;
 		*stack_b = current_b;
 	}
 	else
 	{
-		*stack_b = current_b->next;
-		current_b->next = *stack_a;
-		current_a->prev = current_b;
-		*stack_a = current_a->prev;
+		*stack_a = current_a->next;
+		current_a->next = current_b;
+		current_b->prev = current_a;
+		*stack_b = current_a;
 	}
 	ft_putstr("\npb");
 }

@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/04/02 05:58:59 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/04/02 06:40:42 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	rotate_b(t_stack **stack_b);
 void	reverse_rotate_a(t_stack **stack_a);
 void	reverse_rotate_b(t_stack **stack_b);
 void	push_a(t_stack **stack_a, t_stack **stack_b);
-void	push_b(t_stack **stack_b, t_stack **stack_a);
+void	push_b(t_stack **stack_a, t_stack **stack_b);
 void	sort_three_nbrs(t_stack **stack_a);
 
 #endif

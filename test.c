@@ -611,8 +611,8 @@ void	push_a(t_stack **stack_a, t_stack **stack_b)
 	{
 		current_a = current_b;
 		current_b = current_b->next;
-		current_b->prev  = NULL;
-		current_a->next  = NULL;
+		current_b->prev = NULL;
+		current_a->next = NULL;
 		*stack_a = current_a;
 		*stack_b = current_b;
 	}
@@ -626,7 +626,33 @@ void	push_a(t_stack **stack_a, t_stack **stack_b)
 	ft_putstr("\npa");
 }
 
-vo
+void	push_b(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*current_a;
+	t_stack	*current_b;
+
+	current_a = *stack_a;
+	current_b = *stack_b;
+	if (!current_a)
+		return ;
+	if (!current_b)
+	{
+		current_b = current_a;
+		current_a = current_a->next;
+		current_a->prev = NULL;
+		current_b->next = NULL;
+		*stack_a = current_a;
+		*stack_b = current_b;
+	}
+	else
+	{
+		*stack_a = current_a->next;
+		current_a->next = current_b;
+		current_b->prev = current_a;
+		*stack_b = current_a;
+	}
+	ft_putstr("\npa");
+}
 
 int main()
 {
@@ -634,10 +660,10 @@ int main()
 	t_stack *stack_a;
 	t_stack *stack_b;
 
-	stack_b = NULL;
 	stack_a = fill_a_stack(nbrs_to_sort, 5);
+	stack_b = NULL;
 	//sort_five_nbrs(&stack_a, &stack_b);
-	push_a(&stack_a, &stack_b);
+
 	print_list(stack_a, "a");
 	print_list(stack_b, "b");
     return 0;
