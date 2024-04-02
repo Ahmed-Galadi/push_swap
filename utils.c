@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:11 by agaladi           #+#    #+#             */
-/*   Updated: 2024/03/31 05:27:29 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/04/02 03:26:05 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,7 @@ int	*input_formater(int argc, char *argv[], int *a_len)
 		error_accured();
 	if (!is_norep(output))
 		error_accured();
+	if (is_sorted(output, *a_len))
+		exit(EXIT_SUCCESS);
 	return (output);
 }

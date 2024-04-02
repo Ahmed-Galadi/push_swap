@@ -196,6 +196,28 @@ typedef struct		s_stack
 	
 }					t_stack;
 
+int		*str_to_int_tab(char *nbrs, int *a_len)
+{
+	char	**splited_nbrs;
+	int		*nbrs_arr_output;
+	int		i;
+
+	splited_nbrs = ft_split(nbrs, ' ');
+	if (!splited_nbrs)
+		return (NULL);
+	nbrs_arr_output = malloc(count_words(nbrs, ' ') * sizeof(int));
+	if (!nbrs_arr_output)
+		return (NULL);
+	i = 0;
+	while (splited_nbrs[i])
+	{
+		nbrs_arr_output[i] = ft_atoi(splited_nbrs[i]);
+		i++;
+	}
+	*a_len = count_words(nbrs, ' ');
+	return (free(splited_nbrs),nbrs_arr_output);
+}
+
 t_stack *create_stack(int content, t_stack *prev)
 {
 	t_stack *output_stack;
@@ -388,61 +410,62 @@ void	reverse_rotate_both(t_stack **stack_a, t_stack **stack_b)
 	ft_putstr("\nrrr");
 }
 
-void push_a(t_stack **stack_a, t_stack **stack_b)
-{
-	t_stack *current_a;
-	t_stack *current_b;
+// void push_a(t_stack **stack_b, t_stack **stack_a)
+// {
+// 	t_stack *current_a;
+// 	t_stack *current_b;
 
-	current_a = *stack_a;
-	current_b = *stack_b;
-	if (!*stack_b)
-		exit(EXIT_FAILURE);
-	else if (!*stack_a)
-	{
-		current_a = current_b;
-		current_b = current_b->next;
-		current_b->prev = NULL;
-		current_a->next = NULL;
-		*stack_a = current_a;
-		*stack_b = current_b;
-	}
-	else
-	{
-		*stack_b = current_b->next;
-		current_b->next = *stack_a;
-		current_a->prev = current_b;
-		*stack_a = current_a->prev;
-	}
-	ft_putstr("\npa");
-}
+// 	current_a = *stack_b;
+// 	current_b = *stack_a;
+// 	if (!*stack_b)
+// 		exit(EXIT_FAILURE);
+// 	else if (!*stack_a)
+// 	{
+// 		current_a = current_b;
+// 		current_b = current_b->next;
+// 		current_b->prev = NULL;
+// 		current_a->next = NULL;
+// 		*stack_a = current_a;
+// 		*stack_b = current_b;
+// 	}
+// 	else
+// 	{
+// 		*stack_b = current_b->next;
+// 		current_b->next = *stack_a;
+// 		current_a->prev = current_b;
+// 		*stack_a = current_a->prev;
+// 	}
+// 	ft_putstr("\npb");
+// }
 
-void push_b(t_stack **stack_b, t_stack **stack_a)
-{
-	t_stack *current_a;
-	t_stack *current_b;
 
-	current_a = *stack_a;
-	current_b = *stack_b;
-	if (!*stack_b)
-		exit(EXIT_FAILURE);
-	else if (!*stack_a)
-	{
-		current_a = current_b;
-		current_b = current_b->next;
-		current_b->prev = NULL;
-		current_a->next = NULL;
-		*stack_a = current_a;
-		*stack_b = current_b;
-	}
-	else
-	{
-		*stack_b = current_b->next;
-		current_b->next = *stack_a;
-		current_a->prev = current_b;
-		*stack_a = current_a->prev;
-	}
-	ft_putstr("\npb");
-}
+// void push_b(t_stack **stack_b, t_stack **stack_a)
+// {
+// 	t_stack *current_a;
+// 	t_stack *current_b;
+
+// 	current_a = *stack_a;
+// 	current_b = *stack_b;
+// 	if (!*stack_b)
+// 		exit(EXIT_FAILURE);
+// 	else if (!*stack_a)
+// 	{
+// 		current_a = current_b;
+// 		current_b = current_b->next;
+// 		current_b->prev = NULL;
+// 		current_a->next = NULL;
+// 		*stack_a = current_a;
+// 		*stack_b = current_b;
+// 	}
+// 	else
+// 	{
+// 		*stack_b = current_b->next;
+// 		current_b->next = *stack_a;
+// 		current_a->prev = current_b;
+// 		*stack_a = current_a->prev;
+// 	}
+// 	ft_putstr("\npb");
+// }
 // *-----------------------------------------------------*
 //					2			1		   3
 // case_1 :		  midle      little       big
@@ -548,53 +571,74 @@ int		is_sorted(int *int_arr, int arr_len)
 	return (1);
 }
 
-int		*str_to_int_tab(char *nbrs, int *a_len)
-{
-	char	**splited_nbrs;
-	int		*nbrs_arr_output;
-	int		i;
-
-	splited_nbrs = ft_split(nbrs, ' ');
-	if (!splited_nbrs)
-		return (NULL);
-	nbrs_arr_output = malloc(count_words(nbrs, ' ') * sizeof(int));
-	if (!nbrs_arr_output)
-		return (NULL);
-	i = 0;
-	while (splited_nbrs[i])
-	{
-		nbrs_arr_output[i] = ft_atoi(splited_nbrs[i]);
-		i++;
-	}
-	*a_len = count_words(nbrs, ' ');
-	return (free(splited_nbrs),nbrs_arr_output);
-}
-// int 	check_input(char *input)
+// void	sort_five_nbrs(t_stack **stack_a, t_stack **stack_b)
 // {
+// 	t_stack	*current_a;
+// 	t_stack *current_b;
 // 	int		i;
-
+// 	current_a = *stack_a;
+// 	current_b = *stack_b;
+// 	print_list(*stack_a, "a");
+// 	push_b(stack_a, stack_b);
+// 	push_b(stack_a, stack_b);
+// 	sort_three_nbrs(stack_a);
+// 	if (current_b->content > current_b->next->content)
+// 		swap_b(*stack_b);
 // 	i = 0;
-// 	while (input[i])
+// 	while (i < 2)
 // 	{
-// 		if ((input[i] == '-' || input[i] == '+') && !ft_isdigit(input[i + 1]))
-// 			return (0);
-// 		if (!ft_isdigit(input[i]) && input[i] != ' ' && input[i] != '+' && input[i] != '-')
-// 			return (0);
+// 		if (current_a->content > current_b->content)
+// 			push_a(stack_b, stack_a);
+// 		else
+// 		{
+// 			push_a(stack_b, stack_a);
+// 			rotate_a(stack_a);
+// 		}
 // 		i++;
 // 	}
-// 	return (1);
 // }
+
+void	push_a(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*current_a;
+	t_stack	*current_b;
+
+	current_a = *stack_a;
+	current_b = *stack_b;
+	if (!current_b)
+		return ;
+	if (!current_a)
+	{
+		current_a = current_b;
+		current_b = current_b->next;
+		current_b->prev  = NULL;
+		current_a->next  = NULL;
+		*stack_a = current_a;
+		*stack_b = current_b;
+	}
+	else
+	{
+		*stack_b = current_b->next;
+		current_b->next = current_a;
+		current_a->prev = current_b;
+		*stack_a = current_b;
+	}
+	ft_putstr("\npa");
+}
+
+vo
+
 int main()
 {
-	int length = 0;
-	int nbr = ft_atoi("2147483647");
-
+	int nbrs_to_sort[] = {1,5,2,4,3};
 	t_stack *stack_a;
-	// t_stack *stack_b;
+	t_stack *stack_b;
 
-	// stack_a = fill_a_stack(nbrs_to_sort, length);
-	// sort_three_nbrs(&stack_a);
-	// print_list(stack_a, "a");
-	printf("%d", nbr);
+	stack_b = NULL;
+	stack_a = fill_a_stack(nbrs_to_sort, 5);
+	//sort_five_nbrs(&stack_a, &stack_b);
+	push_a(&stack_a, &stack_b);
+	print_list(stack_a, "a");
+	print_list(stack_b, "b");
     return 0;
 }
