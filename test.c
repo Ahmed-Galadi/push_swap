@@ -571,32 +571,6 @@ int		is_sorted(int *int_arr, int arr_len)
 	return (1);
 }
 
-// void	sort_five_nbrs(t_stack **stack_a, t_stack **stack_b)
-// {
-// 	t_stack	*current_a;
-// 	t_stack *current_b;
-// 	int		i;
-// 	current_a = *stack_a;
-// 	current_b = *stack_b;
-// 	print_list(*stack_a, "a");
-// 	push_b(stack_a, stack_b);
-// 	push_b(stack_a, stack_b);
-// 	sort_three_nbrs(stack_a);
-// 	if (current_b->content > current_b->next->content)
-// 		swap_b(*stack_b);
-// 	i = 0;
-// 	while (i < 2)
-// 	{
-// 		if (current_a->content > current_b->content)
-// 			push_a(stack_b, stack_a);
-// 		else
-// 		{
-// 			push_a(stack_b, stack_a);
-// 			rotate_a(stack_a);
-// 		}
-// 		i++;
-// 	}
-// }
 
 void	push_a(t_stack **stack_a, t_stack **stack_b)
 {
@@ -654,15 +628,61 @@ void	push_b(t_stack **stack_a, t_stack **stack_b)
 	ft_putstr("\npa");
 }
 
+// void	sort_five_nbrs(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	t_stack	*current_a;
+// 	t_stack *current_b;
+// 	int		i;
+
+// 	current_a = *stack_a;
+// 	current_b = *stack_b;
+// 	push_b(stack_a, stack_b);
+// 	push_b(stack_a, stack_b);
+// 	sort_three_nbrs(stack_a);
+// 	if (current_b->content > current_b->next->content)
+// 		swap_b(*stack_b);
+// 	i = 0;
+// 	while (i < 2)
+// 	{
+// 		if (current_a->content > current_b->content)
+// 			push_a(stack_a, stack_b);
+// 		else
+// 		{
+// 			push_a(stack_a, stack_b);
+// 			rotate_a(stack_a);
+// 		}
+// 		i++;
+// 	}
+// }
+
 int main()
 {
-	int nbrs_to_sort[] = {1,5,2,4,3};
+	int nbrs_to_sort[] = {-5000, 1010, 54, 1, 7777};
 	t_stack *stack_a;
 	t_stack *stack_b;
 
 	stack_a = fill_a_stack(nbrs_to_sort, 5);
 	stack_b = NULL;
-	//sort_five_nbrs(&stack_a, &stack_b);
+	
+	// *----------------------
+	push_b(&stack_a, &stack_b);
+	push_b(&stack_a, &stack_b);
+	sort_three_nbrs(&stack_a);
+	if (stack_b->content > stack_b->next->content)
+		swap_b(stack_b);
+	int i = 0;
+	while (i < 2)
+	{
+		if (stack_a->content > stack_b->content)
+			push_a(&stack_a, &stack_b);
+		else
+		{
+			push_a(&stack_a, &stack_b);
+			rotate_a(&stack_a);
+		}
+		i++;
+	}
+	// *----------------------
 
 	print_list(stack_a, "a");
 	print_list(stack_b, "b");
