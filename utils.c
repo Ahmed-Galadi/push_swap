@@ -6,11 +6,25 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:11 by agaladi           #+#    #+#             */
-/*   Updated: 2024/03/08 18:19:04 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/03/31 05:27:29 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int		is_sorted(int *int_arr, int arr_len)
+{
+	int		i;
+
+	i = 0;
+	while (i < (arr_len - 1))
+	{
+		if (int_arr[i] > int_arr[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 int		*str_to_int_tab(char *nbrs, int *a_len)
 {

@@ -1,6 +1,95 @@
 #include <libc.h>
+#include <limits.h>
 
+//*------------------------------------------------------------------
+int	count_words(const char *str, char d)
+{
+	int		i;
+	int		count;
 
+	i = -1;
+	count = 0;
+	while (str[++i])
+	{
+		if (i == 0 && str[i] != d)
+			count++;
+		if (str[i] == d && str[i + 1] != d && str[i + 1])
+			count++;
+	}
+	return (count);
+}
+
+static int	del_str_len(const char *str, char d)
+{
+	int		i;
+
+	i = 0;
+	while (str[i] != d && str[i])
+		i++;
+	return (i);
+}
+
+static char	*alloc_strs(const char **s, char **ret_arr, char c)
+{
+	int		i;
+	int		str_len;
+
+	str_len = del_str_len(*s, c);
+	i = 0;
+	*ret_arr = malloc(str_len + 1);
+	if (!(*ret_arr))
+		return (NULL);
+	while (i < str_len)
+	{
+		(*ret_arr)[i] = **s;
+		i++;
+		(*s)++;
+	}
+	(*ret_arr)[i] = '\0';
+	return (*ret_arr);
+}
+
+static void	free_arrs(char **arr, int index)
+{
+	int		i;
+
+	i = 0;
+	while (i < index)
+	{
+		free(arr[i]);
+		i++;
+	}
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**ret_arr;
+	int		words_count;
+	int		i;
+
+	if (!s)
+		return (NULL);
+	words_count = count_words(s, c);
+	i = 0;
+	ret_arr = (char **)malloc((words_count + 1) * sizeof(char *));
+	if (!ret_arr)
+		return (NULL);
+	while (i < words_count)
+	{
+		while (*s == c)
+			s++;
+		if (alloc_strs(&s, &ret_arr[i], c) == NULL)
+		{
+			free_arrs(ret_arr, i);
+			free(ret_arr);
+			return (NULL);
+		}
+		i++;
+	}
+	ret_arr[i] = 0;
+	return (ret_arr);
+}
+//*------------------------------------------------------------------
 void	ft_putstr(char *str)
 {
 	while (*str)
@@ -20,9 +109,9 @@ static int	ft_isspace(char c)
 
 int	ft_atoi(const char *nptr)
 {
-	unsigned long output;
-	int				sign;
-	int				i;
+	long	output;
+	int		sign;
+	int		i;
 
 	output = 0;
 	sign = 1;
@@ -38,14 +127,15 @@ int	ft_atoi(const char *nptr)
 	while (ft_isdigit(nptr[i]))
 	{
 		output = output * 10 + (nptr[i] - '0');
-		if (output > 9223372036854775807UL && sign == 1)
-			return (-1);
-		if (output > 9223372036854775807UL && sign == -1)
-			return (0);
 		i++;
 	}
+	if (output > INT_MAX && sign == 1)
+		exit(EXIT_FAILURE);
+	if ((output * -1) < INT_MIN && sign == -1)
+		exit(EXIT_SUCCESS);
 	return (output * sign);
 }
+
 
 int		*args_to_int_tab(char *args[], int arr_size)
 {
@@ -444,15 +534,67 @@ void	sort_three_nbrs(t_stack **stack_a)
 		reverse_rotate_a(stack_a);
 }
 
+int		is_sorted(int *int_arr, int arr_len)
+{
+	int		i;
+
+	i = 0;
+	while (i < (arr_len - 1))
+	{
+		if (int_arr[i] > int_arr[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int		*str_to_int_tab(char *nbrs, int *a_len)
+{
+	char	**splited_nbrs;
+	int		*nbrs_arr_output;
+	int		i;
+
+	splited_nbrs = ft_split(nbrs, ' ');
+	if (!splited_nbrs)
+		return (NULL);
+	nbrs_arr_output = malloc(count_words(nbrs, ' ') * sizeof(int));
+	if (!nbrs_arr_output)
+		return (NULL);
+	i = 0;
+	while (splited_nbrs[i])
+	{
+		nbrs_arr_output[i] = ft_atoi(splited_nbrs[i]);
+		i++;
+	}
+	*a_len = count_words(nbrs, ' ');
+	return (free(splited_nbrs),nbrs_arr_output);
+}
+// int 	check_input(char *input)
+// {
+// 	int		i;
+
+// 	i = 0;
+// 	while (input[i])
+// 	{
+// 		if ((input[i] == '-' || input[i] == '+') && !ft_isdigit(input[i + 1]))
+// 			return (0);
+// 		if (!ft_isdigit(input[i]) && input[i] != ' ' && input[i] != '+' && input[i] != '-')
+// 			return (0);
+// 		i++;
+// 	}
+// 	return (1);
+// }
 int main()
 {
-	int nbrs_to_sort[] = {2255, 2296, 2254};
+	int length = 0;
+	int nbr = ft_atoi("2147483647");
 
 	t_stack *stack_a;
-	t_stack *stack_b;
+	// t_stack *stack_b;
 
-	stack_a = fill_a_stack(nbrs_to_sort, 3);
-	sort_three_nbrs(&stack_a);
-	print_list(stack_a, "a");
+	// stack_a = fill_a_stack(nbrs_to_sort, length);
+	// sort_three_nbrs(&stack_a);
+	// print_list(stack_a, "a");
+	printf("%d", nbr);
     return 0;
 }

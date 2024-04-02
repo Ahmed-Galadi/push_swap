@@ -30,6 +30,8 @@ int	main(int argc, char *argv[])
 	int		a_len;
 
 	input_int_arr = input_formater(argc, argv, &a_len);
+	if (is_sorted(input_int_arr, a_len))
+		exit(EXIT_SUCCESS);
 	a = fill_a_stack(input_int_arr, a_len);
 	b = NULL;
 
