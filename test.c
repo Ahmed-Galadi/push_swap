@@ -643,7 +643,7 @@ void	sort_three_nbrs(t_stack **stack_a)
 		reverse_rotate_a(stack_a);
 }
 
-int	lowest_content(t_stack **stack, int *lowest_position)
+int	lowest_content(t_stack **stack)
 {
 	t_stack	*current;
 	int		output;
@@ -656,7 +656,6 @@ int	lowest_content(t_stack **stack, int *lowest_position)
 			output = current->content;
 		current = current->next;
 	}
-
 	return (output);
 }
 
@@ -665,18 +664,19 @@ int	find_position(t_stack **stack, int content)
 	t_stack	*current;
 	int		output;
 
-	output = 1;
-	while
-}
-
-void	bring_to_top(t_stack **stack, int content)
-{
-	t_stack	*current;
-
 	current = *stack;
-	
-
+	output = 1;
+	while (current)
+	{
+		if (current->content == content)
+			break ;
+		current = current->next;
+		output++;
+	}
+	return (output);
 }
+
+
 
 void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b)
 {
@@ -685,8 +685,8 @@ void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b)
 	int		lowest_position;
 
 	current = *stack_a;
-	lowest_position = 0;
-	lowest = lowest_content(stack_a, &lowest_position);
+	lowest = lowest_content(stack_a);
+	lowest_position = find_position(stack_a, lowest);
 	if (lowest_position == 1)
 	{
 		push_b(stack_a, stack_b);
@@ -717,17 +717,34 @@ void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
+void	bring_to_top(t_stack **stack, int content)
+{
+	t_stack	*current;
+	int		target_position;
+	int		stack_length;
+
+	current = *stack;
+	target_position = find_position(stack, content);
+	stack_length = list_len(stack);
+	while (target_position)
+	{
+		_a(stack);
+		target_position--;
+	}
+}
+
 int main()
 {
-	int nbrs_to_sort[] = {-1,-999,-2,-999991};
+	int nbrs_to_sort[] = {-1,-2,55,10101,-999991,0,88,784};
 	t_stack *stack_a;
 	t_stack *stack_b;
 
-	stack_a = fill_a_stack(nbrs_to_sort, 4);
+	stack_a = fill_a_stack(nbrs_to_sort, 8);
 	stack_b = NULL;
 	
-	sort_four_nbrs(&stack_a, &stack_b);
+	// sort_four_nbrs(&stack_a, &stack_b);
+	bring_to_top(&stack_a, -2);
 	print_list(stack_a, "a");
-	print_list(stack_b, "b");
+	// print_list(stack_b, "b");
     return 0;
 }

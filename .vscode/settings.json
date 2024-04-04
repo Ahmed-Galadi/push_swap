@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"locale": "c",
-		"limits": "c"
+		"limits": "c",
+		"iterator": "c"
 	}
 }
