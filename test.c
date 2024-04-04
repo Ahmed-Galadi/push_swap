@@ -528,34 +528,7 @@ int is_case_4(int first, int second, int third)
 		return (0);
 }
 
-void	sort_three_nbrs(t_stack **stack_a)
-{
-	t_stack	*stack;
-	int		first;
-	int		second;
-	int		third;
 
-	stack = *stack_a;
-	first = stack->content;
-	second = stack->next->content;
-	third = stack->next->next->content;
-	if (is_case_1(first, second, third))
-		swap_a(*stack_a);
-	else if (is_case_2(first, second, third))
-	{
-		swap_a(*stack_a);
-		reverse_rotate_a(stack_a);
-	}
-	else if (is_case_3(first, second, third))
-		rotate_a(stack_a);
-	else if (is_case_4(first, second, third))
-	{
-		swap_a(*stack_a);
-		rotate_a(stack_a);
-	}
-	else
-		reverse_rotate_a(stack_a);
-}
 
 int		is_sorted(int *int_arr, int arr_len)
 {
@@ -628,62 +601,132 @@ void	push_b(t_stack **stack_a, t_stack **stack_b)
 	ft_putstr("\npa");
 }
 
-// void	sort_five_nbrs(t_stack **stack_a, t_stack **stack_b)
-// {
-// 	t_stack	*current_a;
-// 	t_stack *current_b;
-// 	int		i;
+void	sort_two_nbrs(t_stack **stack_a)
+{
+	t_stack	*stack;
+	int		first_nbr;
+	int		second_nbr;
 
-// 	current_a = *stack_a;
-// 	current_b = *stack_b;
-// 	push_b(stack_a, stack_b);
-// 	push_b(stack_a, stack_b);
-// 	sort_three_nbrs(stack_a);
-// 	if (current_b->content > current_b->next->content)
-// 		swap_b(*stack_b);
-// 	i = 0;
-// 	while (i < 2)
-// 	{
-// 		if (current_a->content > current_b->content)
-// 			push_a(stack_a, stack_b);
-// 		else
-// 		{
-// 			push_a(stack_a, stack_b);
-// 			rotate_a(stack_a);
-// 		}
-// 		i++;
-// 	}
-// }
+	stack = *stack_a;
+	first_nbr = stack->content;
+	second_nbr = stack->next->content;
+	if (first_nbr > second_nbr)
+		swap_a(*stack_a);
+}
+
+void	sort_three_nbrs(t_stack **stack_a)
+{
+	t_stack	*stack;
+	int		first;
+	int		second;
+	int		third;
+
+	stack = *stack_a;
+	first = stack->content;
+	second = stack->next->content;
+	third = stack->next->next->content;
+	if (is_case_1(first, second, third))
+		swap_a(*stack_a);
+	else if (is_case_2(first, second, third))
+	{
+		swap_a(*stack_a);
+		reverse_rotate_a(stack_a);
+	}
+	else if (is_case_3(first, second, third))
+		rotate_a(stack_a);
+	else if (is_case_4(first, second, third))
+	{
+		swap_a(*stack_a);
+		rotate_a(stack_a);
+	}
+	else
+		reverse_rotate_a(stack_a);
+}
+
+int	lowest_content(t_stack **stack, int *lowest_position)
+{
+	t_stack	*current;
+	int		output;
+
+	current = *stack;
+	output = current->content;
+	while (current)
+	{
+		if (current->content < output)
+			output = current->content;
+		current = current->next;
+	}
+
+	return (output);
+}
+
+int	find_position(t_stack **stack, int content)
+{
+	t_stack	*current;
+	int		output;
+
+	output = 1;
+	while
+}
+
+void	bring_to_top(t_stack **stack, int content)
+{
+	t_stack	*current;
+
+	current = *stack;
+	
+
+}
+
+void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*current;
+	int		lowest;
+	int		lowest_position;
+
+	current = *stack_a;
+	lowest_position = 0;
+	lowest = lowest_content(stack_a, &lowest_position);
+	if (lowest_position == 1)
+	{
+		push_b(stack_a, stack_b);
+		sort_three_nbrs(stack_a);
+		push_a(stack_a, stack_b);
+	}
+	if (lowest_position == 2)
+	{
+		swap_a(*stack_a);
+		push_b(stack_a, stack_b);
+		sort_three_nbrs(stack_a);
+		push_a(stack_a, stack_b);
+	}
+	if (lowest_position == 3)
+	{
+		reverse_rotate_a(stack_a);
+		reverse_rotate_a(stack_a);
+		push_b(stack_a, stack_b);
+		sort_three_nbrs(stack_a);
+		push_a(stack_a, stack_b);
+	}
+	if (lowest_position == 4)
+	{
+		reverse_rotate_a(stack_a);
+		push_b(stack_a, stack_b);
+		sort_three_nbrs(stack_a);
+		push_a(stack_a, stack_b);
+	}
+}
 
 int main()
 {
-	int nbrs_to_sort[] = {-5000, 1010, 54, 1, 7777};
+	int nbrs_to_sort[] = {-1,-999,-2,-999991};
 	t_stack *stack_a;
 	t_stack *stack_b;
 
-	stack_a = fill_a_stack(nbrs_to_sort, 5);
+	stack_a = fill_a_stack(nbrs_to_sort, 4);
 	stack_b = NULL;
 	
-	// *----------------------
-	push_b(&stack_a, &stack_b);
-	push_b(&stack_a, &stack_b);
-	sort_three_nbrs(&stack_a);
-	if (stack_b->content > stack_b->next->content)
-		swap_b(stack_b);
-	int i = 0;
-	while (i < 2)
-	{
-		if (stack_a->content > stack_b->content)
-			push_a(&stack_a, &stack_b);
-		else
-		{
-			push_a(&stack_a, &stack_b);
-			rotate_a(&stack_a);
-		}
-		i++;
-	}
-	// *----------------------
-
+	sort_four_nbrs(&stack_a, &stack_b);
 	print_list(stack_a, "a");
 	print_list(stack_b, "b");
     return 0;

@@ -33,7 +33,13 @@ int	main(int argc, char *argv[])
 	a = fill_a_stack(input_int_arr, a_len);
 	b = NULL;
 
-	sort_three_nbrs(&a);
+	//sort_three_nbrs(&a);
 	print_list(a, "a");
+	while (a) 
+	{
+        t_stack *temp = a;
+        a = a->next;
+        free(temp);
+    }
 	return (0);
 }
