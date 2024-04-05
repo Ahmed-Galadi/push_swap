@@ -722,29 +722,61 @@ void	bring_to_top(t_stack **stack, int content)
 	t_stack	*current;
 	int		target_position;
 	int		stack_length;
+	int		loop_rep;
 
 	current = *stack;
 	target_position = find_position(stack, content);
+	loop_rep = target_position - 1;
 	stack_length = list_len(stack);
-	while (target_position)
+	while (loop_rep)
 	{
-		_a(stack);
-		target_position--;
+		if (current->content == content)
+			break;
+		if (lst_last(stack)->content == content)
+		{
+			reverse_rotate_a(stack);
+			break;
+		}
+		if (target_position <= (stack_length / 2))	
+			rotate_a(stack);
+		if (target_position == ((stack_length / 2) + 1))
+			rotate_a(stack);
+		else if (target_position > (stack_length / 2))
+		{
+			reverse_rotate_a(stack);
+			if (lst_last(stack)->content == content)
+			{
+				reverse_rotate_a(stack);
+				break;
+			}
+		}
+		loop_rep--;
 	}
+}
+
+void	sort_five_nbrs(t_stack **stack_a, t_stack **stack_b)
+{
+	int		min_nbr;
+
+	min_nbr = lowest_content(stack_a);
+	bring_to_top(stack_a, min_nbr);
+	push_b(stack_a, stack_b);
+	sort_four_nbrs(stack_a, stack_b);
+	push_a(stack_a, stack_b);
+	
 }
 
 int main()
 {
-	int nbrs_to_sort[] = {-1,-2,55,10101,-999991,0,88,784};
+	int nbrs_to_sort[] = {-74,1,254,258,47};
 	t_stack *stack_a;
 	t_stack *stack_b;
 
-	stack_a = fill_a_stack(nbrs_to_sort, 8);
+	stack_a = fill_a_stack(nbrs_to_sort, 5);
 	stack_b = NULL;
 	
-	// sort_four_nbrs(&stack_a, &stack_b);
-	bring_to_top(&stack_a, -2);
+	sort_five_nbrs(&stack_a, &stack_b);
 	print_list(stack_a, "a");
-	// print_list(stack_b, "b");
+	print_list(stack_b, "b");
     return 0;
 }
