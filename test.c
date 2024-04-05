@@ -719,18 +719,16 @@ void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b)
 
 void	bring_to_top(t_stack **stack, int content)
 {
-	t_stack	*current;
 	int		target_position;
 	int		stack_length;
 	int		loop_rep;
 
-	current = *stack;
 	target_position = find_position(stack, content);
 	loop_rep = target_position - 1;
 	stack_length = list_len(stack);
 	while (loop_rep)
 	{
-		if (current->content == content)
+		if ((*stack)->content == content)
 			break;
 		if (lst_last(stack)->content == content)
 		{
