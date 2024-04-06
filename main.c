@@ -38,7 +38,7 @@ int	main(int argc, char *argv[])
 	if (a_len == 1)
 		print_list(a, "a");
 	sort_all(&a, &b);
-	// print_list(a, "a");
+	print_list(a, "a");
 	while (a) 
 	{
         t_stack *temp = a;

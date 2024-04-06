@@ -251,8 +251,12 @@ t_stack *fill_a_stack(int *int_arr, int arr_len)
     return (output_stack);
 }
 
-int list_len(t_stack **stack) {
+int list_len(t_stack **stack)
+{
     t_stack *current = *stack;
+
+	if (!*stack)
+		return (0);
     int len = 1;
     while (current->next) {
         current = current->next;
@@ -677,48 +681,6 @@ int	find_position(t_stack **stack, int content)
 }
 
 
-
-// void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b)
-// {
-// 	t_stack	*current;
-// 	int		lowest;
-// 	int		lowest_position;
-
-// 	current = *stack_a;
-// 	lowest = lowest_content(stack_a);
-// 	lowest_position = find_position(stack_a, lowest);
-// 	if (lowest_position == 1)
-// 	{
-// 		push_b(stack_a, stack_b);
-// 		sort_three_nbrs(stack_a);
-// 		push_a(stack_a, stack_b);
-// 	}
-// 	if (lowest_position == 2)
-// 	{
-// 		swap_a(*stack_a);
-// 		push_b(stack_a, stack_b);
-// 		sort_three_nbrs(stack_a);
-// 		push_a(stack_a, stack_b);
-// 	}
-// 	if (lowest_position == 3)
-// 	{
-// 		reverse_rotate_a(stack_a);
-// 		reverse_rotate_a(stack_a);
-// 		push_b(stack_a, stack_b);
-// 		sort_three_nbrs(stack_a);
-// 		push_a(stack_a, stack_b);
-// 	}
-// 	if (lowest_position == 4)
-// 	{
-// 		reverse_rotate_a(stack_a);
-// 		push_b(stack_a, stack_b);
-// 		sort_three_nbrs(stack_a);
-// 		push_a(stack_a, stack_b);
-// 	}
-// }
-
-
-
 void	bring_to_top(t_stack **stack, int content)
 {
 	int		target_position;
@@ -756,6 +718,17 @@ void	bring_to_top(t_stack **stack, int content)
 	}
 }
 
+void	insertion_sort(t_stack **stack_a, t_stack **stack_b)
+{
+	while (list_len(stack_a))
+	{
+		bring_to_top(stack_a, lowest_content(stack_a));
+		push_b(stack_a, stack_b);
+	}
+	while (list_len(stack_b))
+		push_a(stack_a, stack_b);
+}
+
 void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b)
 {
 		int		min_nbr;
@@ -779,17 +752,26 @@ void	sort_five_nbrs(t_stack **stack_a, t_stack **stack_b)
 	
 }
 
+
+
 int main()
 {
-	int nbrs_to_sort[] = {3,1,2};
+int nbrs_to_sort[] = {2389, 5903, 4276, 9142, 3621, 5087, 6712, 1698, 7351, 8426,
+                      3925, 6193, 7548, 2765, 8931, 1276, 3064, 5802, 9437, 4851,
+                      7592, 2048, 6821, 3597, 5714, 8279, 4372, 9618, 7539, 6715,
+                      5921, 8467, 3158, 9064, 4182, 8459, 5824, 7261, 4729, 1837,
+                      5692, 9018, 2781, 8305, 1946, 3892, 7125, 6518, 3490, 5603,
+                      8291, 6472, 8135, 4937, 7324, 5837, 4085, 9546, 1804, 2967,
+                      5406, 8923, 6734, 5209, 3627, 8751, 6092, 1927, 7348, 6479,
+                      5276, 8413, 5986, 3675, 7831, 2457, 9581, 6213, 3485, 5972,
+                      4816, 2593, 8951, 7396, 6829, 4032, 8476, 5914, 9362, 7204};
 	t_stack *stack_a;
 	t_stack *stack_b;
 
-	stack_a = fill_a_stack(nbrs_to_sort, 3);
+	stack_a = fill_a_stack(nbrs_to_sort, 100);
 	stack_b = NULL;
-	bring_to_top(&stack_a, 1);
-	// sort_five_nbrs(&stack_a, &stack_b);
+	insertion_sort(&stack_a, &stack_b);
 	print_list(stack_a, "a");
-	// print_list(stack_b, "b");
+	print_list(stack_b, "b");
     return 0;
 }
