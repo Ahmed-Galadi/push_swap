@@ -6,13 +6,13 @@
 #    By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 22:25:32 by agaladi           #+#    #+#              #
-#    Updated: 2024/03/31 05:01:27 by agaladi          ###   ########.fr        #
+#    Updated: 2024/04/06 03:35:29 by agaladi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 SRCS = ft_split.c utils.c is_valid.c ft_atoi.c error_handler.c \
-		fill_stack.c actions.c list_utils.c sort_three_nbrs.c
+		fill_stack.c actions.c list_utils.c bring_to_top.c sort_all.c
 CFLAGS = -Wall -Wextra -Werror
 DEPS = push_swap.h
 LIB = push_swap.a
@@ -34,7 +34,7 @@ clean:
 	rm -f $(OBJS)
 
 fclean: clean
-	rm -rf $(LIB)
+	rm -rf $(LIB) $(OUT)
 
 re: fclean all
 

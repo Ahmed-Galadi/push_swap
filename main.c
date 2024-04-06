@@ -10,6 +10,8 @@
 
 #include "push_swap.h"
 
+
+
 void	print_list(t_stack *stack, char *name)
 {
 	t_stack	*current;
@@ -33,13 +35,16 @@ int	main(int argc, char *argv[])
 	a = fill_a_stack(input_int_arr, a_len);
 	b = NULL;
 
-	//sort_three_nbrs(&a);
-	print_list(a, "a");
+	if (a_len == 1)
+		print_list(a, "a");
+	sort_all(&a, &b);
+	// print_list(a, "a");
 	while (a) 
 	{
         t_stack *temp = a;
         a = a->next;
         free(temp);
     }
+	free(input_int_arr);
 	return (0);
 }

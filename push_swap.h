@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/04/02 06:40:42 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/04/06 03:41:29 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,13 @@ void	ft_putstr(char *str);
 void	error_accured(void);
 void	input_checker(int argc, char *argv[]);
 int		*input_formater(int argc, char *argv[], int *a_len);
+int		list_len(t_stack **stack);
 t_stack *create_stack(int content, t_stack *prev);
 t_stack *fill_a_stack(int *int_arr, int arr_len);
 t_stack *lst_last(t_stack **lst);
+int		lowest_content(t_stack **stack);
+int		find_position(t_stack **stack, int content);
+void	bring_to_top(t_stack **stack, int content);
 void	swap_a(t_stack *stack_a);
 void	swap_b(t_stack *stack_a);
 void	rotate_a(t_stack **stack_a);
@@ -56,6 +60,10 @@ void	reverse_rotate_a(t_stack **stack_a);
 void	reverse_rotate_b(t_stack **stack_b);
 void	push_a(t_stack **stack_a, t_stack **stack_b);
 void	push_b(t_stack **stack_a, t_stack **stack_b);
+void	sort_two_nbrs(t_stack **stack_a);
 void	sort_three_nbrs(t_stack **stack_a);
+void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b);
+void	sort_five_nbrs(t_stack **stack_a, t_stack **stack_b);
+void	sort_all(t_stack **stack_a, t_stack **stack_b);
 
 #endif

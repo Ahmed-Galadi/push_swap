@@ -678,44 +678,46 @@ int	find_position(t_stack **stack, int content)
 
 
 
-void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b)
-{
-	t_stack	*current;
-	int		lowest;
-	int		lowest_position;
+// void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	t_stack	*current;
+// 	int		lowest;
+// 	int		lowest_position;
 
-	current = *stack_a;
-	lowest = lowest_content(stack_a);
-	lowest_position = find_position(stack_a, lowest);
-	if (lowest_position == 1)
-	{
-		push_b(stack_a, stack_b);
-		sort_three_nbrs(stack_a);
-		push_a(stack_a, stack_b);
-	}
-	if (lowest_position == 2)
-	{
-		swap_a(*stack_a);
-		push_b(stack_a, stack_b);
-		sort_three_nbrs(stack_a);
-		push_a(stack_a, stack_b);
-	}
-	if (lowest_position == 3)
-	{
-		reverse_rotate_a(stack_a);
-		reverse_rotate_a(stack_a);
-		push_b(stack_a, stack_b);
-		sort_three_nbrs(stack_a);
-		push_a(stack_a, stack_b);
-	}
-	if (lowest_position == 4)
-	{
-		reverse_rotate_a(stack_a);
-		push_b(stack_a, stack_b);
-		sort_three_nbrs(stack_a);
-		push_a(stack_a, stack_b);
-	}
-}
+// 	current = *stack_a;
+// 	lowest = lowest_content(stack_a);
+// 	lowest_position = find_position(stack_a, lowest);
+// 	if (lowest_position == 1)
+// 	{
+// 		push_b(stack_a, stack_b);
+// 		sort_three_nbrs(stack_a);
+// 		push_a(stack_a, stack_b);
+// 	}
+// 	if (lowest_position == 2)
+// 	{
+// 		swap_a(*stack_a);
+// 		push_b(stack_a, stack_b);
+// 		sort_three_nbrs(stack_a);
+// 		push_a(stack_a, stack_b);
+// 	}
+// 	if (lowest_position == 3)
+// 	{
+// 		reverse_rotate_a(stack_a);
+// 		reverse_rotate_a(stack_a);
+// 		push_b(stack_a, stack_b);
+// 		sort_three_nbrs(stack_a);
+// 		push_a(stack_a, stack_b);
+// 	}
+// 	if (lowest_position == 4)
+// 	{
+// 		reverse_rotate_a(stack_a);
+// 		push_b(stack_a, stack_b);
+// 		sort_three_nbrs(stack_a);
+// 		push_a(stack_a, stack_b);
+// 	}
+// }
+
+
 
 void	bring_to_top(t_stack **stack, int content)
 {
@@ -726,6 +728,8 @@ void	bring_to_top(t_stack **stack, int content)
 	target_position = find_position(stack, content);
 	loop_rep = target_position - 1;
 	stack_length = list_len(stack);
+	if (stack_length == 1)
+		return ;
 	while (loop_rep)
 	{
 		if ((*stack)->content == content)
@@ -752,6 +756,17 @@ void	bring_to_top(t_stack **stack, int content)
 	}
 }
 
+void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b)
+{
+		int		min_nbr;
+
+	min_nbr = lowest_content(stack_a);
+	bring_to_top(stack_a, min_nbr);
+	push_b(stack_a, stack_b);
+	sort_three_nbrs(stack_a);
+	push_a(stack_a, stack_b);
+}
+
 void	sort_five_nbrs(t_stack **stack_a, t_stack **stack_b)
 {
 	int		min_nbr;
@@ -766,15 +781,15 @@ void	sort_five_nbrs(t_stack **stack_a, t_stack **stack_b)
 
 int main()
 {
-	int nbrs_to_sort[] = {-74,1,254,258,47};
+	int nbrs_to_sort[] = {3,1,2};
 	t_stack *stack_a;
 	t_stack *stack_b;
 
-	stack_a = fill_a_stack(nbrs_to_sort, 5);
+	stack_a = fill_a_stack(nbrs_to_sort, 3);
 	stack_b = NULL;
-	
-	sort_five_nbrs(&stack_a, &stack_b);
+	bring_to_top(&stack_a, 1);
+	// sort_five_nbrs(&stack_a, &stack_b);
 	print_list(stack_a, "a");
-	print_list(stack_b, "b");
+	// print_list(stack_b, "b");
     return 0;
 }

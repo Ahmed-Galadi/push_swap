@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:06:29 by agaladi           #+#    #+#             */
-/*   Updated: 2024/03/30 02:37:07 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/04/05 21:19:47 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,37 @@ t_stack *lst_last(t_stack **lst)
 	while (current->next != NULL)
 		current = current->next;
 	return (current);
+}
+
+int	lowest_content(t_stack **stack)
+{
+	t_stack	*current;
+	int		output;
+
+	current = *stack;
+	output = current->content;
+	while (current)
+	{
+		if (current->content < output)
+			output = current->content;
+		current = current->next;
+	}
+	return (output);
+}
+
+int	find_position(t_stack **stack, int content)
+{
+	t_stack	*current;
+	int		output;
+
+	current = *stack;
+	output = 1;
+	while (current)
+	{
+		if (current->content == content)
+			break ;
+		current = current->next;
+		output++;
+	}
+	return (output);
 }
