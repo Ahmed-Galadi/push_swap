@@ -680,6 +680,22 @@ int	find_position(t_stack **stack, int content)
 	return (output);
 }
 
+int	reversed_find_position(t_stack **stack, int content)
+{
+	t_stack	*current;
+	int		output;
+
+	current = lst_last(stack);
+	output = 1;
+	while (current)
+	{
+		if (current->content == content)
+			break ;
+		current = current->prev;
+		output++;
+	}
+	return (output);
+}
 
 void	bring_to_top(t_stack **stack, int content)
 {
@@ -718,16 +734,7 @@ void	bring_to_top(t_stack **stack, int content)
 	}
 }
 
-void	insertion_sort(t_stack **stack_a, t_stack **stack_b)
-{
-	while (list_len(stack_a))
-	{
-		bring_to_top(stack_a, lowest_content(stack_a));
-		push_b(stack_a, stack_b);
-	}
-	while (list_len(stack_b))
-		push_a(stack_a, stack_b);
-}
+
 
 void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b)
 {
@@ -752,26 +759,101 @@ void	sort_five_nbrs(t_stack **stack_a, t_stack **stack_b)
 	
 }
 
+void	insertion_sort(t_stack **stack_a, t_stack **stack_b)
+{
+	while (list_len(stack_a))
+	{
+		bring_to_top(stack_a, lowest_content(stack_a));
+		push_b(stack_a, stack_b);
+	}
+	while (list_len(stack_b))
+		push_a(stack_a, stack_b);
+}
 
+void	sort_all(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*current;
+	t_stack	*reversed_current;
+	int		min_content;
+	int		min_position;
+	int		reverse_min_content;
+	int		reverse_min_position;
+
+	current = *stack_a;
+	reversed_current = lst_last(stack_a);
+	min_content = lowest_content(&current);
+	min_position = find_position(&current, min_content);
+	while (current)
+	{
+		if (min_position <= 20 && reverse_min_position <= 20)
+		{
+			if (min_position < reverse_min_position)
+				bring_to_top(min_content);
+			else
+				bring_to_top(reverse_min_content);
+		}
+		current = current->next;
+	}
+	while (current)
+	{
+		if (min_position <= 20 && reverse_min_position <= 20)
+		{
+			if (min_position < reverse_min_position)
+				bring_to_top(min_content);
+			else
+				bring_to_top(reverse_min_content);
+		}
+		current = current->next;
+	}
+	current = *stack_a;
+	while (current)
+	{
+		if (min_position <= 20 && reverse_min_position <= 20)
+		{
+			if (min_position < reverse_min_position)
+				bring_to_top(min_content);
+			else
+				bring_to_top(reverse_min_content);
+		}
+		current = current->next;
+	}
+	current = *stack_a;
+	while (current)
+	{
+		if (min_position <= 20 && reverse_min_position <= 20)
+		{
+			if (min_position < reverse_min_position)
+				bring_to_top(min_content);
+			else
+				bring_to_top(reverse_min_content);
+		}
+		current = current->next;
+	}
+	current = *stack_a;
+	while (current)
+	{
+		if (min_position <= 20 && reverse_min_position <= 20)
+		{
+			if (min_position < reverse_min_position)
+				bring_to_top(min_content);
+			else
+				bring_to_top(reverse_min_content);
+		}
+		current = current->next;
+	}
+}
 
 int main()
 {
-int nbrs_to_sort[] = {2389, 5903, 4276, 9142, 3621, 5087, 6712, 1698, 7351, 8426,
-                      3925, 6193, 7548, 2765, 8931, 1276, 3064, 5802, 9437, 4851,
-                      7592, 2048, 6821, 3597, 5714, 8279, 4372, 9618, 7539, 6715,
-                      5921, 8467, 3158, 9064, 4182, 8459, 5824, 7261, 4729, 1837,
-                      5692, 9018, 2781, 8305, 1946, 3892, 7125, 6518, 3490, 5603,
-                      8291, 6472, 8135, 4937, 7324, 5837, 4085, 9546, 1804, 2967,
-                      5406, 8923, 6734, 5209, 3627, 8751, 6092, 1927, 7348, 6479,
-                      5276, 8413, 5986, 3675, 7831, 2457, 9581, 6213, 3485, 5972,
-                      4816, 2593, 8951, 7396, 6829, 4032, 8476, 5914, 9362, 7204};
+int nbrs_to_sort[] = {5,8,0,6,1};
 	t_stack *stack_a;
 	t_stack *stack_b;
 
-	stack_a = fill_a_stack(nbrs_to_sort, 100);
+	stack_a = fill_a_stack(nbrs_to_sort, 5);
 	stack_b = NULL;
-	insertion_sort(&stack_a, &stack_b);
-	print_list(stack_a, "a");
-	print_list(stack_b, "b");
+	// insertion_sort(&stack_a, &stack_b);
+	// print_list(stack_a, "a");
+	// print_list(stack_b, "b");
+ 	printf("%d", reversed_find_position(&stack_a, 5));
     return 0;
 }
