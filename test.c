@@ -137,6 +137,7 @@ int	ft_atoi(const char *nptr)
 }
 
 
+
 int		*args_to_int_tab(char *args[], int arr_size)
 {
 	int		*output_tab;
@@ -801,16 +802,58 @@ void	sort_all(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
+int		min_int_position(int *nbrs, int length, int index)
+{
+	int		min;
+	int		min_position;
+	int		i;
+
+	min = *nbrs;
+	min_position = 0;
+	i = 0;
+	while (i < length)
+	{
+		if (nbrs[i] < min)
+		{
+			min = nbrs[i];
+			min_position = i;
+		}
+		i++;
+	}
+	return (min_position + index);
+}
+
+void	sort_int_tab(int *nbrs, int	length)
+{
+	int		min_position;
+	int		tmp;
+	int		i;
+
+	i = 0;
+	while ((length - 1))
+	{
+		min_position = min_int_position((nbrs + i), length--, i);
+		tmp = nbrs[i];
+		nbrs[i] = nbrs[min_position];
+		nbrs[min_position] = tmp;
+		i++;
+	}
+}
+
 int main()
 {
-	int nbrs_to_sort[] = {25,-5,47,22,88,-7,-9,87,31,11};
+	int nbrs_to_sort[] = {-7300, 7400, -7500, 7600, -7700, 7800, -7900, 8000, -8100, 8200,0};
+	int length = 11;
 	t_stack *stack_a;
 	t_stack *stack_b;
 
-	stack_a = fill_a_stack(nbrs_to_sort, 10);
-	stack_b = NULL;
-	sort_all(&stack_a, &stack_b);
-	print_list(stack_a, "a");
-	print_list(stack_b, "b");
+	// stack_a = fill_a_stack(nbrs_to_sort, 10);
+	// stack_b = NULL;
+	// sort_all(&stack_a, &stack_b);
+	// print_list(stack_a, "a");
+	// print_list(stack_b, "b");
+	sort_int_tab(nbrs_to_sort, length);
+	for (int i = 0; i < length; i++)
+		printf("%d ", nbrs_to_sort[i]);
     return 0;
 }
