@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/04/13 00:10:29 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/04/13 01:44:32 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 typedef struct		s_stack
 {
 	int				content;
+	int				sorted_index;
 	struct	s_stack	*prev;
 	struct	s_stack	*next;
-	
 }					t_stack;
 
 
