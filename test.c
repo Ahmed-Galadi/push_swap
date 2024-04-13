@@ -192,9 +192,9 @@ int 	is_valid_args(char **args, int size)
 typedef struct		s_stack
 {
 	int				content;
+	int				sorted_index;
 	struct	s_stack	*prev;
 	struct	s_stack	*next;
-	
 }					t_stack;
 
 int		*str_to_int_tab(char *nbrs, int *a_len)
@@ -232,6 +232,74 @@ t_stack *create_stack(int content, t_stack *prev)
 	return (output_stack);
 }
 
+int		min_int_position(int *nbrs, int length, int index)
+{
+	int		min;
+	int		min_position;
+	int		i;
+
+	min = *nbrs;
+	min_position = 0;
+	i = 0;
+	while (i < length)
+	{
+		if (nbrs[i] < min)
+		{
+			min = nbrs[i];
+			min_position = i;
+		}
+		i++;
+	}
+	return (min_position + index);
+}
+
+void	sort_int_tab(int *nbrs, int	length)
+{
+	int		min_position;
+	int		tmp;
+	int		i;
+
+	i = 0;
+	while ((length - 1))
+	{
+		min_position = min_int_position((nbrs + i), length--, i);
+		tmp = nbrs[i];
+		nbrs[i] = nbrs[min_position];
+		nbrs[min_position] = tmp;
+		i++;
+	}
+}
+
+int		find_sorted_index(int *int_arr, int content, int length)
+{
+	int		index;
+	int		*sorted_arr;
+
+	sorted_arr = int_arr;
+	sort_int_tab(sorted_arr, length);
+	index = 0;
+	while (index < length)
+	{
+		if (sorted_arr[index] == content)
+			return (index);
+		index++;
+	}
+	return (-1);
+}
+
+void	set_sorted_index(t_stack **stack, int *int_arr, int length)
+{
+	t_stack	*current;
+	int		i;
+
+	current = *stack;
+	while (current)
+	{
+		current->sorted_index = find_sorted_index(int_arr, current->content, length);
+		current = current->next;
+	}
+}
+
 t_stack *fill_a_stack(int *int_arr, int arr_len)
 {
     t_stack	*output_stack;
@@ -249,6 +317,7 @@ t_stack *fill_a_stack(int *int_arr, int arr_len)
         current = current->next;
 		i++;
     }
+	set_sorted_index(&output_stack, int_arr, arr_len);
     return (output_stack);
 }
 
@@ -802,58 +871,21 @@ void	sort_all(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-int		min_int_position(int *nbrs, int length, int index)
-{
-	int		min;
-	int		min_position;
-	int		i;
 
-	min = *nbrs;
-	min_position = 0;
-	i = 0;
-	while (i < length)
-	{
-		if (nbrs[i] < min)
-		{
-			min = nbrs[i];
-			min_position = i;
-		}
-		i++;
-	}
-	return (min_position + index);
-}
-
-void	sort_int_tab(int *nbrs, int	length)
-{
-	int		min_position;
-	int		tmp;
-	int		i;
-
-	i = 0;
-	while ((length - 1))
-	{
-		min_position = min_int_position((nbrs + i), length--, i);
-		tmp = nbrs[i];
-		nbrs[i] = nbrs[min_position];
-		nbrs[min_position] = tmp;
-		i++;
-	}
-}
 
 int main()
 {
-	int nbrs_to_sort[] = {-7300, 7400, -7500, 7600, -7700, 7800, -7900, 8000, -8100, 8200,0};
-	int length = 11;
+	int nbrs_to_sort[] = {-7300, 7400, -7500, 7600, -7700, 7800, -7900, 8000, -8100, 8200,0,8,5};
+	int length = 13;
 	t_stack *stack_a;
 	t_stack *stack_b;
 
-	// stack_a = fill_a_stack(nbrs_to_sort, 10);
-	// stack_b = NULL;
+	stack_a = fill_a_stack(nbrs_to_sort, length);
+	stack_b = NULL;
 	// sort_all(&stack_a, &stack_b);
-	// print_list(stack_a, "a");
-	// print_list(stack_b, "b");
-	sort_int_tab(nbrs_to_sort, length);
-	for (int i = 0; i < length; i++)
-		printf("%d ", nbrs_to_sort[i]);
+	print_list(stack_a, "a");
+	print_list(stack_b, "b");
+	for (t_stack *current = stack_a; current; current = current->next)
+		printf("%d ", current->sorted_index);
     return 0;
 }

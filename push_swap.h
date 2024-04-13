@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/04/06 03:41:29 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/04/13 00:10:29 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ void	sort_three_nbrs(t_stack **stack_a);
 void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b);
 void	sort_five_nbrs(t_stack **stack_a, t_stack **stack_b);
 void	sort_all(t_stack **stack_a, t_stack **stack_b);
+void	sort_int_tab(int *nbrs, int	length);
 
 #endif
