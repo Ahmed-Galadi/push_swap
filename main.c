@@ -17,6 +17,8 @@ void	print_list(t_stack *stack, char *name)
 	t_stack	*current;
 
 	current = stack;
+	if (!stack)
+		return ;
 	printf("\nstack_%s\n", name);
     while (current != NULL) {
         printf("%d ", current->content);
@@ -35,10 +37,19 @@ int	main(int argc, char *argv[])
 	a = fill_a_stack(input_int_arr, a_len);
 	b = NULL;
 
-	if (a_len == 1)
-		print_list(a, "a");
-	sort_all(&a, &b);
+	push_b(&a, &b);
+	push_b(&a, &b);
+	push_b(&a, &b);
+	push_a(&a, &b);
+	// if (a_len == 1)
+	// 	print_list(a, "a");
+	// sort_all(&a, &b);
 	print_list(a, "a");
+	print_list(b, "b");
+
+
+
+
 	while (a) 
 	{
         t_stack *temp = a;

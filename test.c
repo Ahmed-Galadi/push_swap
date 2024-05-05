@@ -290,7 +290,6 @@ int		find_sorted_index(int *int_arr, int content, int length)
 void	set_sorted_index(t_stack **stack, int *int_arr, int length)
 {
 	t_stack	*current;
-	int		i;
 
 	current = *stack;
 	while (current)
@@ -484,62 +483,6 @@ void	reverse_rotate_both(t_stack **stack_a, t_stack **stack_b)
 	ft_putstr("\nrrr");
 }
 
-// void push_a(t_stack **stack_b, t_stack **stack_a)
-// {
-// 	t_stack *current_a;
-// 	t_stack *current_b;
-
-// 	current_a = *stack_b;
-// 	current_b = *stack_a;
-// 	if (!*stack_b)
-// 		exit(EXIT_FAILURE);
-// 	else if (!*stack_a)
-// 	{
-// 		current_a = current_b;
-// 		current_b = current_b->next;
-// 		current_b->prev = NULL;
-// 		current_a->next = NULL;
-// 		*stack_a = current_a;
-// 		*stack_b = current_b;
-// 	}
-// 	else
-// 	{
-// 		*stack_b = current_b->next;
-// 		current_b->next = *stack_a;
-// 		current_a->prev = current_b;
-// 		*stack_a = current_a->prev;
-// 	}
-// 	ft_putstr("\npb");
-// }
-
-
-// void push_b(t_stack **stack_b, t_stack **stack_a)
-// {
-// 	t_stack *current_a;
-// 	t_stack *current_b;
-
-// 	current_a = *stack_a;
-// 	current_b = *stack_b;
-// 	if (!*stack_b)
-// 		exit(EXIT_FAILURE);
-// 	else if (!*stack_a)
-// 	{
-// 		current_a = current_b;
-// 		current_b = current_b->next;
-// 		current_b->prev = NULL;
-// 		current_a->next = NULL;
-// 		*stack_a = current_a;
-// 		*stack_b = current_b;
-// 	}
-// 	else
-// 	{
-// 		*stack_b = current_b->next;
-// 		current_b->next = *stack_a;
-// 		current_a->prev = current_b;
-// 		*stack_a = current_a->prev;
-// 	}
-// 	ft_putstr("\npb");
-// }
 // *-----------------------------------------------------*
 //					2			1		   3
 // case_1 :		  midle      little       big
@@ -647,32 +590,56 @@ void	push_a(t_stack **stack_a, t_stack **stack_b)
 	ft_putstr("\npa");
 }
 
+// void	push_b(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	t_stack	*current_a;
+// 	t_stack	*current_b;
+
+// 	current_a = *stack_a;
+// 	current_b = *stack_b;
+// 	if (!current_b)
+// 	{
+// 		current_b = current_a;
+// 		current_a = current_a->next;
+// 		current_a->prev = NULL;
+// 		current_b->next = NULL;
+// 		*stack_a = current_a;
+// 		*stack_b = current_b;
+// 	}
+// 	else
+// 	{
+// 		*stack_a = current_a->next;
+// 		current_a->next = current_b;
+// 		current_b->prev = current_a;
+// 		*stack_b = current_a;
+// 	}
+// 	ft_putstr("\npb");
+// }
+
 void	push_b(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*current_a;
 	t_stack	*current_b;
 
 	current_a = *stack_a;
-	current_b = *stack_b;
 	if (!current_a)
 		return ;
 	if (!current_b)
 	{
-		current_b = current_a;
+		current_b = *stack_a;
 		current_a = current_a->next;
 		current_a->prev = NULL;
 		current_b->next = NULL;
-		*stack_a = current_a;
-		*stack_b = current_b;
 	}
 	else
 	{
+		current_b = *stack_b;
 		*stack_a = current_a->next;
 		current_a->next = current_b;
 		current_b->prev = current_a;
 		*stack_b = current_a;
 	}
-	ft_putstr("\npa");
+	ft_putstr("\npb");
 }
 
 void	sort_two_nbrs(t_stack **stack_a)
@@ -717,70 +684,106 @@ void	sort_three_nbrs(t_stack **stack_a)
 		reverse_rotate_a(stack_a);
 }
 
-int	lowest_content(t_stack **stack)
+
+
+t_stack	*find_stack(t_stack **stack, int content)
 {
 	t_stack	*current;
-	int		output;
+	t_stack	*output;
 
 	current = *stack;
-	output = current->content;
+	output = NULL;
 	while (current)
 	{
-		if (current->content < output)
-			output = current->content;
+		if (current->content == content)
+		{
+			output = current;
+			break ;
+		}
 		current = current->next;
 	}
 	return (output);
 }
 
-
-int	reverse_lowest_content(t_stack **stack, int prev_lowest)
+int		reverse_find_position(t_stack **stack, int content)
 {
 	t_stack	*current;
 	int		output;
 
 	current = lst_last(stack);
-	if (!*stack)
-		return (0);
-	output = current->content;
-	while (current)
-	{
-		if (current->content < output && current->content != prev_lowest)
-			output = current->content;
-		current = current->prev;
-	}
-	return (output);
-}
-
-int	find_position(t_stack **stack, int content)
-{
-	t_stack	*current;
-	int		output;
-
-	current = *stack;
 	output = 1;
 	while (current)
 	{
 		if (current->content == content)
 			break ;
-		current = current->next;
+		current = current->prev;
 		output++;
 	}
 	return (output);
 }
 
-int	reverse_find_position(t_stack **stack, int content)
+
+t_stack	*lowest_stack(t_stack **stack)
+{
+	t_stack	*current;
+	int		min_int;
+
+	current = *stack;
+	min_int = current->content;
+	while (current)
+	{
+		if (current->content < min_int)
+			min_int = current->content;
+		current = current->next;
+	}
+	return (find_stack(stack, min_int));
+}
+
+t_stack	*highest_stack(t_stack **stack)
+{
+	t_stack	*current;
+	int		max_int;
+
+	current = *stack;
+	max_int = current->content;
+	while (current)
+	{
+		if (current->content > max_int)
+			max_int = current->content;
+		current = current->next;
+	}
+	return (find_stack(stack, max_int));
+}
+
+t_stack	*reverse_lowest_stack(t_stack **stack, int prev_lowest)
+{
+	t_stack	*current;
+	int		min_int;
+
+	current = lst_last(stack);
+	if (!*stack)
+		return (0);
+	min_int = current->content;
+	while (current)
+	{
+		if (current->content < min_int && current->content != prev_lowest)
+			min_int = current->content;
+		current = current->prev;
+	}
+	return (find_stack(stack, min_int));
+}
+int		find_position(t_stack **stack, int content)
 {
 	t_stack	*current;
 	int		output;
 
 	current = lst_last(stack);
-	output = 1;
+	output = 0;
 	while (current)
 	{
 		if (current->content == content)
 			break ;
-		current = current->prev;
+		current = current->next;
 		output++;
 	}
 	return (output);
@@ -825,67 +828,103 @@ void	bring_to_top(t_stack **stack, int content)
 
 
 
-void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b)
-{
-		int		min_nbr;
+// void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b)
+// {
+// 		int		min_nbr;
 
-	min_nbr = lowest_content(stack_a);
-	bring_to_top(stack_a, min_nbr);
-	push_b(stack_a, stack_b);
-	sort_three_nbrs(stack_a);
-	push_a(stack_a, stack_b);
-}
+// 	min_nbr = lowest_content(stack_a);
+// 	bring_to_top(stack_a, min_nbr);
+// 	push_b(stack_a, stack_b);
+// 	sort_three_nbrs(stack_a);
+// 	push_a(stack_a, stack_b);
+// }
 
-void	sort_five_nbrs(t_stack **stack_a, t_stack **stack_b)
-{
-	int		min_nbr;
+// void	sort_five_nbrs(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	int		min_nbr;
 
-	min_nbr = lowest_content(stack_a);
-	bring_to_top(stack_a, min_nbr);
-	push_b(stack_a, stack_b);
-	sort_four_nbrs(stack_a, stack_b);
-	push_a(stack_a, stack_b);
+// 	min_nbr = lowest_content(stack_a);
+// 	bring_to_top(stack_a, min_nbr);
+// 	push_b(stack_a, stack_b);
+// 	sort_four_nbrs(stack_a, stack_b);
+// 	push_a(stack_a, stack_b);
 	
-}
+// }
 
-void	insertion_sort(t_stack **stack_a, t_stack **stack_b)
+// void	insertion_sort(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	while (list_len(stack_a))
+// 	{
+// 		bring_to_top(stack_a, lowest_content(stack_a));
+// 		push_b(stack_a, stack_b);
+// 	}
+// 	while (list_len(stack_b))
+// 		push_a(stack_a, stack_b);
+// }
+
+
+
+t_stack	*get_chunk_node(t_stack **stack, int chunk_start, int chunk_end, int reverse)
 {
-	while (list_len(stack_a))
+	t_stack	*current;
+	t_stack	*reverse_current;
+
+	if (!reverse)
 	{
-		bring_to_top(stack_a, lowest_content(stack_a));
-		push_b(stack_a, stack_b);
+		current = *stack;
+		while (current)
+		{
+			if (current->sorted_index >= chunk_start && current->sorted_index <= chunk_end)
+				return (current);
+			current = current->next;
+		}
 	}
-	while (list_len(stack_b))
-		push_a(stack_a, stack_b);
+	else
+	{
+		reverse_current = lst_last(stack);
+		while (current)
+		{
+			if (current->sorted_index >= chunk_start && current->sorted_index <= chunk_end)
+				return (current);
+			current = current->prev;
+		}
+	}
+	return (NULL);
 }
 
 void	sort_all(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*current;
-
+	t_stack	*first;
+	t_stack	*second;
+	int		chunk_start;
+	int		chunk_end;
+	
+	chunk_start = 0;
+	chunk_end = 19;
 	current = *stack_a;
-	while (current)
+	while (*stack_a)
 	{
-		
-		current = current->next;
+		first = get_chunk_node(stack_a, chunk_start, chunk_end, 0);
 	}
 }
 
 
 
+
 int main()
 {
-	int nbrs_to_sort[] = {-7300, 7400, -7500, 7600, -7700, 7800, -7900, 8000, -8100, 8200,0,8,5};
-	int length = 13;
+int nbrs_to_sort[] = {-730};
+	int length = 1;
 	t_stack *stack_a;
 	t_stack *stack_b;
 
 	stack_a = fill_a_stack(nbrs_to_sort, length);
 	stack_b = NULL;
-	// sort_all(&stack_a, &stack_b);
+	//sort_all(&stack_a, &stack_b);
+	push_b(&stack_a, &stack_b);
 	print_list(stack_a, "a");
 	print_list(stack_b, "b");
-	for (t_stack *current = stack_a; current; current = current->next)
-		printf("%d ", current->sorted_index);
+
     return 0;
 }
