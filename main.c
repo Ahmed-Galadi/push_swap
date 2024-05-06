@@ -37,17 +37,10 @@ int	main(int argc, char *argv[])
 	a = fill_a_stack(input_int_arr, a_len);
 	b = NULL;
 
-	push_b(&a, &b);
-	push_b(&a, &b);
-	push_b(&a, &b);
-	push_a(&a, &b);
-	// if (a_len == 1)
-	// 	print_list(a, "a");
-	// sort_all(&a, &b);
+
 	print_list(a, "a");
-	print_list(b, "b");
 
-
+	printf("\n%d", a->sorted_index);
 
 
 	while (a) 
