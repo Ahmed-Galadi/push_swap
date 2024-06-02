@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 03:09:37 by agaladi           #+#    #+#             */
-/*   Updated: 2024/05/05 19:00:05 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/02 19:08:48 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void sort_all(t_stack **stack_a, t_stack **stack_b)
 		sort_four_nbrs(stack_a, stack_b);
 	if (stack_len == 5) 
 		sort_five_nbrs(stack_a, stack_b);
-	// if (stack_len > 5)
-	// 	sort100int(stack_a, stack_b);
+	if (stack_len > 5)
+		sort100int(stack_a, stack_b);
 }
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:06:29 by agaladi           #+#    #+#             */
-/*   Updated: 2024/04/06 04:55:11 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/02 19:10:28 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,22 @@ int	lowest_content(t_stack **stack)
 	while (current)
 	{
 		if (current->content < output)
+			output = current->content;
+		current = current->next;
+	}
+	return (output);
+}
+
+int max_content(t_stack **stack)
+{
+	t_stack *current;
+	int output;
+
+	current = *stack;
+	output = current->content;
+	while (current)
+	{
+		if (current->content > output)
 			output = current->content;
 		current = current->next;
 	}

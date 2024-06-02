@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/04/13 01:44:32 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/02 19:12:22 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_stack *create_stack(int content, t_stack *prev);
 t_stack *fill_a_stack(int *int_arr, int arr_len);
 t_stack *lst_last(t_stack **lst);
 int		lowest_content(t_stack **stack);
+int		max_content(t_stack **stack);
 int		find_position(t_stack **stack, int content);
 void	bring_to_top(t_stack **stack, int content);
 void	swap_a(t_stack *stack_a);
@@ -66,5 +67,6 @@ void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b);
 void	sort_five_nbrs(t_stack **stack_a, t_stack **stack_b);
 void	sort_all(t_stack **stack_a, t_stack **stack_b);
 void	sort_int_tab(int *nbrs, int	length);
+void	sort100int(t_stack **stack_a, t_stack **stack_b);
 
 #endif
