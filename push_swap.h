@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/02 19:12:22 by codespace        ###   ########.fr       */
+/*   Updated: 2024/06/03 11:40:21 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 #include <stdio.h>
 
 
-# define ERROR_MSG "Please Enter:\t./push_swap \"<enter your numbers as a string separated with a space>\"\n\
-\t  or:\t./push_swap <enter your numbers directly as args>"
+# define ERROR_MSG "Error\n"
 
 typedef struct		s_stack
 {

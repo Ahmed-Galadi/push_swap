@@ -36,8 +36,11 @@ int main(int argc, char *argv[])
 	a = fill_a_stack(input_int_arr, a_len);
 	b = NULL;
 
+
 	sort_all(&a, &b);
 	print_list(a, "a");
+	print_list(b, "b");
+
 	// free the allocated nodes
 	while (a)
 	{

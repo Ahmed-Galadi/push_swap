@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:33:49 by agaladi           #+#    #+#             */
-/*   Updated: 2024/04/13 01:44:50 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/03 12:02:02 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int		find_sorted_index(int *int_arr, int content, int length)
 	sorted_arr = int_arr;
 	sort_int_tab(sorted_arr, length);
 	index = 0;
-	while (index < length)
+	while (index <= length)
 	{
 		if (sorted_arr[index] == content)
 			return (index);
