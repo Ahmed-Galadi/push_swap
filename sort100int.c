@@ -12,6 +12,7 @@
 
 #include "push_swap.h"
 
+
 void sort100int(t_stack **stack_a, t_stack **stack_b)
 {
     // int max;
@@ -19,6 +20,12 @@ void sort100int(t_stack **stack_a, t_stack **stack_b)
     int i;
 
     (1 && (x = 16, i = 0));
+
+	// int len = list_len(stack_b);
+	// int len2 = list_len(stack_a);
+	// print_list(*stack_b, "b");
+	// print_list(*stack_a, "a");
+	// printf("%d %d\n", len, len2);
     while (*stack_a)
     {
         if ((*stack_a)->sorted_index <= i)
@@ -35,11 +42,24 @@ void sort100int(t_stack **stack_a, t_stack **stack_b)
         else
             rotate_a(stack_a);
     }
-    while (*stack_b)
+	// push_b(stack_a, stack_b);
+ // len = list_len(stack_b);
+	// len2 = list_len(stack_a);
+	// print_list(*stack_b, "b");
+	// print_list(*stack_a, "a");
+	// printf("%d %d: i \n", len, len2);
+	index_stack(*stack_b);
+	// print_list(*stack_b, "b");
+	exit(0);
+    while (i > 0)
     {
+		printf("len: %d\nint: %d\n", i ,(*stack_b)->sorted_index);
         // max = find_position(stack_b, max_content(stack_b));
-        if ((*stack_b)->sorted_index == list_len(stack_b))
+        if ((*stack_b)->sorted_index == i)
+		{
             push_a(stack_a, stack_b);
+			i--;
+		}
         else if ((*stack_b)->sorted_index < (list_len(stack_b) / 2))
         {
             // while (max-- > 0)

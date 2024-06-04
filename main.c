@@ -20,12 +20,33 @@ void print_list(t_stack *stack, char *name)
 	printf("\nstack_%s\n", name);
 	while (current != NULL)
 	{
-		printf("%d ", current->content);
+		printf("Index: %d \n", current->sorted_index);
 		current = current->next;
 	}
 	printf("\n");
 }
 
+void    index_stack(t_stack *a)
+{
+    t_stack    *curr;
+    t_stack    *cmp;
+    int        count;
+
+    curr = a;
+    while (curr)
+    {
+        cmp = a;
+        count = 0;
+        while (cmp)
+        {
+            if (cmp->content < curr->content)
+                count++;
+            cmp = cmp->next;
+        }
+        curr->sorted_index = count + 1;
+        curr = curr->next;
+    }
+}
 int main(int argc, char *argv[])
 {
 	int *input_int_arr;

@@ -26,8 +26,8 @@ void	error_accured(void)
 
 void	input_checker(int argc, char *argv[])
 {
-	if (argc < 2)
-		error_accured();
+	// if (argc < 2)
+		// error_accured();
 	if (argc == 2)
 		if (!check_input(argv[1]))
 			error_accured();

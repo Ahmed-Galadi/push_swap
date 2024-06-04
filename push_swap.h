@@ -67,5 +67,8 @@ void	sort_five_nbrs(t_stack **stack_a, t_stack **stack_b);
 void	sort_all(t_stack **stack_a, t_stack **stack_b);
 void	sort_int_tab(int *nbrs, int	length);
 void	sort100int(t_stack **stack_a, t_stack **stack_b);
+void print_list(t_stack *stack, char *name);
+void set_sorted_index(t_stack **stack, int *int_arr, int length);
+void    index_stack(t_stack *a);
 
 #endif

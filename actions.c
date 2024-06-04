@@ -74,7 +74,7 @@ void rotate_b(t_stack **stack_b)
 	last_node = lst_last(stack_b);
 	current = *stack_b;
 	*stack_b = current->next;
-	current->next->prev = NULL;
+	// current->next->prev = NULL;
 	current->prev = last_node;
 	current->next = NULL;
 	last_node->next = current;

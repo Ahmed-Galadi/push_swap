@@ -29,7 +29,7 @@ static int find_sorted_index(int *int_arr, int content, int length)
 	return (-1);
 }
 
-static void set_sorted_index(t_stack **stack, int *int_arr, int length)
+void set_sorted_index(t_stack **stack, int *int_arr, int length)
 {
 	t_stack *current;
 
