@@ -6,16 +6,16 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:33:49 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/03 12:02:02 by codespace        ###   ########.fr       */
+/*   Updated: 2024/06/04 00:48:59 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int		find_sorted_index(int *int_arr, int content, int length)
+static int find_sorted_index(int *int_arr, int content, int length)
 {
-	int		index;
-	int		*sorted_arr;
+	int index;
+	int *sorted_arr;
 
 	sorted_arr = int_arr;
 	sort_int_tab(sorted_arr, length);
@@ -23,15 +23,15 @@ static int		find_sorted_index(int *int_arr, int content, int length)
 	while (index <= length)
 	{
 		if (sorted_arr[index] == content)
-			return (index);
+			return (index + 1);
 		index++;
 	}
 	return (-1);
 }
 
-static void	set_sorted_index(t_stack **stack, int *int_arr, int length)
+static void set_sorted_index(t_stack **stack, int *int_arr, int length)
 {
-	t_stack	*current;
+	t_stack *current;
 
 	current = *stack;
 	while (current)
@@ -56,21 +56,21 @@ t_stack *create_stack(int content, t_stack *prev)
 
 t_stack *fill_a_stack(int *int_arr, int arr_len)
 {
-    t_stack	*output_stack;
-	t_stack	*current;
-	int		i;
+	t_stack *output_stack;
+	t_stack *current;
+	int i;
 
 	output_stack = create_stack(int_arr[0], NULL);
-    if (!output_stack)
-        exit(EXIT_FAILURE);
-    current = output_stack;
+	if (!output_stack)
+		exit(EXIT_FAILURE);
+	current = output_stack;
 	i = 1;
-    while (i < arr_len) 
+	while (i < arr_len)
 	{
-        current->next = create_stack(int_arr[i], current);
-        current = current->next;
+		current->next = create_stack(int_arr[i], current);
+		current = current->next;
 		i++;
-    }
+	}
 	set_sorted_index(&output_stack, int_arr, arr_len);
-    return (output_stack);
+	return (output_stack);
 }

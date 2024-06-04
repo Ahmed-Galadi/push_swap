@@ -23,6 +23,7 @@ void print_list(t_stack *stack, char *name)
 		printf("%d ", current->content);
 		current = current->next;
 	}
+	printf("\n");
 }
 
 int main(int argc, char *argv[])
@@ -36,11 +37,13 @@ int main(int argc, char *argv[])
 	a = fill_a_stack(input_int_arr, a_len);
 	b = NULL;
 
-
-	sort_all(&a, &b);
 	print_list(a, "a");
 	print_list(b, "b");
-
+	while (a)
+	{
+		printf("%d ", a->sorted_index);
+		a = a->next;
+	}
 	// free the allocated nodes
 	while (a)
 	{
