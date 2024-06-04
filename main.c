@@ -34,8 +34,11 @@ int main(int argc, char *argv[])
 	int a_len;
 
 	input_int_arr = input_formater(argc, argv, &a_len);
+	printf("%d\n", input_int_arr[0]);
 	a = fill_a_stack(input_int_arr, a_len);
 	b = NULL;
+
+	sort_all(&a, &b);
 
 	print_list(a, "a");
 	print_list(b, "b");
@@ -44,6 +47,8 @@ int main(int argc, char *argv[])
 		printf("%d ", a->sorted_index);
 		a = a->next;
 	}
+	printf("\n");
+
 	// free the allocated nodes
 	while (a)
 	{
