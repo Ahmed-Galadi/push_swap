@@ -16,37 +16,41 @@ void print_list(t_stack *stack, char *name)
 
 	current = stack;
 	if (!stack)
+	{
+		printf("stack_%s empty\n\n", name);
 		return;
-	printf("\nstack_%s\n", name);
+	}
+	printf("\nstack_%s: \n", name);
 	while (current != NULL)
 	{
-		printf("Index: %d \n", current->sorted_index);
+		printf("Index: %d\tdata: %d\n", current->sorted_index, current->content);
 		current = current->next;
 	}
 	printf("\n");
 }
 
-void    index_stack(t_stack *a)
+void index_stack(t_stack *a)
 {
-    t_stack    *curr;
-    t_stack    *cmp;
-    int        count;
+	t_stack *curr;
+	t_stack *cmp;
+	int count;
 
-    curr = a;
-    while (curr)
-    {
-        cmp = a;
-        count = 0;
-        while (cmp)
-        {
-            if (cmp->content < curr->content)
-                count++;
-            cmp = cmp->next;
-        }
-        curr->sorted_index = count + 1;
-        curr = curr->next;
-    }
+	curr = a;
+	while (curr)
+	{
+		cmp = a;
+		count = 0;
+		while (cmp)
+		{
+			if (cmp->content < curr->content)
+				count++;
+			cmp = cmp->next;
+		}
+		curr->sorted_index = count + 1;
+		curr = curr->next;
+	}
 }
+
 int main(int argc, char *argv[])
 {
 	int *input_int_arr;
@@ -55,21 +59,10 @@ int main(int argc, char *argv[])
 	int a_len;
 
 	input_int_arr = input_formater(argc, argv, &a_len);
-	printf("%d\n", input_int_arr[0]);
 	a = fill_a_stack(input_int_arr, a_len);
 	b = NULL;
 
 	sort_all(&a, &b);
-
-	print_list(a, "a");
-	print_list(b, "b");
-	while (a)
-	{
-		printf("%d ", a->sorted_index);
-		a = a->next;
-	}
-	printf("\n");
-
 	// free the allocated nodes
 	while (a)
 	{
