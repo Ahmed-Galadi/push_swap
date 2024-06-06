@@ -6,28 +6,26 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:14:08 by agaladi           #+#    #+#             */
-/*   Updated: 2024/03/31 05:46:54 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/06 04:39:18 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_putstr(char *str)
+void ft_putstr(char *str)
 {
 	while (*str)
 		write(1, str++, 1);
 }
 
-void	error_accured(void)
+void error_accured(void)
 {
-	ft_putstr(ERROR_MSG);	
+	ft_putstr(ERROR_MSG);
 	exit(EXIT_FAILURE);
 }
 
-void	input_checker(int argc, char *argv[])
+void input_checker(int argc, char *argv[])
 {
-	// if (argc < 2)
-		// error_accured();
 	if (argc == 2)
 		if (!check_input(argv[1]))
 			error_accured();

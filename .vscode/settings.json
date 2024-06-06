@@ -9,7 +9,9 @@
 		"string_view": "c",
 		"unordered_map": "c",
 		"push_swap.h": "c",
-		"limits.h": "c"
+		"limits.h": "c",
+		"stack": "c",
+		"random": "c"
 	},
 	"cmake.sourceDirectory": "/Users/agaladi/Desktop/push_swap/visualizer/push_swap_visualizer"
 }
