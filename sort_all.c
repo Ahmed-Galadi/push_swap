@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 03:09:37 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/05 23:48:14 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/06 01:54:20 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void push(t_stack **from, t_stack **to, char stack)
 	head = (*from)->next;
 	ft_lstadd_front(to, (*from));
 	(*from) = head;
-	// printf("head: %d\thead b %d\n", (*from)->sorted_index, (*to)->sorted_index);
 	if (stack == 'a' || stack == 'A')
 		printf("pa\n");
 	else if (stack == 'b' || stack == 'B')
@@ -120,18 +119,12 @@ void ft_r_rotate(t_stack **stack, char s)
 		return;
 
 	tmp = *stack;
-
-	// Find the last node
 	last = *stack;
 	while (last->next)
 	{
 		last = last->next;
 	}
-
-	// Find the penultimate node
 	penultimate = ft_lstpenultimate(*stack);
-
-	// Perform the rotation
 	*stack = last;
 	last->next = tmp;
 	penultimate->next = NULL;
@@ -170,16 +163,14 @@ void ft_rotate(t_stack **list, char stack)
 void push_to_a(t_stack **stack_A, t_stack **stack_B)
 {
 	int i;
-	int x = 16;
+	int x;
+
+	x = 16;
 	if (list_len(stack_A) > 100)
 		x = 34;
 	i = 0;
-	// index_stack(*stack_B);
 	while (*stack_A)
 	{
-		// printf("Size A: %d\tSize B: %d\n\n\n", list_len(stack_A), list_len(stack_B));
-		// print_list(*stack_B, "b");
-		// push(stack_A, stack_B, 'b');
 		if ((*stack_A)->sorted_index <= i)
 		{
 			push(stack_A, stack_B, 'b');
@@ -200,58 +191,22 @@ void push_to_a(t_stack **stack_A, t_stack **stack_B)
 
 void sort_stack(t_stack **a, t_stack **b)
 {
+	int size;
+
 	push_to_a(a, b);
-	// int size = list_len(a);
-	// int chunk = 16;
-	// if (size > 100)
-	// 	chunk = 34;
-	// int count = chunk;
-
-	// printf("size: %d\nchunk: %d\ncount: %d\n", size, chunk, count);
-	// while (*a)
-	// {
-	// 	if ((*a)->sorted_index <= chunk)
-	// 	{
-	// 		push_b(a, b);
-	// 		chunk++;
-	// 		// size--;
-	// 	}
-	// 	else if ((*a)->sorted_index <= chunk - count)
-	// 	{
-	// 		push_b(a, b);
-	// 		rotate_b(b);
-	// 		chunk++;
-	// 		// size--;
-	// 	}
-	// 	else
-	// 		rotate_a(a);
-	// }
-	int size = list_len(b);
-	// printf("size %d\n", size);
-
-	// printf("size: %d\nchunk: %d\ncount: %d\n", size, chunk, count);
-	index_stack(*b);
+	size = list_len(b);
 	while (*b)
 	{
-		index_stack(*b);
 		if ((*b)->sorted_index == size)
 		{
-			// printf("Pushed data %d, index %d\n\n", (*b)->content, (*b)->sorted_index);
 			push(b, a, 'a');
 			size--;
 		}
 		else if (num_top(*b, size) == 1)
-		{
-			// while ((*b)->sorted_index != size)
 			ft_rotate(b, 'b');
-		}
 		else
-		{
-			// while ((*b)->sorted_index != size)
 			ft_r_rotate(b, 'b');
-		}
 	}
-	// printf("size: %d\nchunk: %d\ncount: %d\n", size, chunk, count);
 }
 
 void sort_all(t_stack **stack_a, t_stack **stack_b)
