@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 03:09:37 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/06 05:06:05 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/06 10:45:46 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void sort_four_nbrs(t_stack **stack_a, t_stack **stack_b)
 
 	min_nbr = lowest_content(stack_a);
 	bring_to_top(stack_a, min_nbr);
-	push_b(stack_a, stack_b);
+	push(stack_a, stack_b, 'b');
 	sort_three_nbrs(stack_a);
-	push_a(stack_a, stack_b);
+	push(stack_b, stack_a, 'a');
 }
 
 void sort_five_nbrs(t_stack **stack_a, t_stack **stack_b)
@@ -51,9 +51,9 @@ void sort_five_nbrs(t_stack **stack_a, t_stack **stack_b)
 
 	min_nbr = lowest_content(stack_a);
 	bring_to_top(stack_a, min_nbr);
-	push_b(stack_a, stack_b);
+	push(stack_a, stack_b, 'b');
 	sort_four_nbrs(stack_a, stack_b);
-	push_a(stack_a, stack_b);
+	push(stack_b, stack_a, 'a');
 }
 
 void sort_all(t_stack **stack_a, t_stack **stack_b)

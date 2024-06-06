@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:06:29 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/06 04:43:47 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/06 10:31:44 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,6 @@ int lowest_content(t_stack **stack)
 	while (current)
 	{
 		if (current->content < output)
-			output = current->content;
-		current = current->next;
-	}
-	return (output);
-}
-
-int max_content(t_stack **stack)
-{
-	t_stack *current;
-	int output;
-
-	current = *stack;
-	output = current->content;
-	while (current)
-	{
-		if (current->content > output)
 			output = current->content;
 		current = current->next;
 	}

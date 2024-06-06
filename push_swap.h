@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/06 05:26:46 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/06 10:32:05 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,13 @@ int list_len(t_stack **stack);
 t_stack *create_stack(int content, t_stack *prev);
 t_stack *fill_a_stack(int *int_arr, int arr_len);
 t_stack *lst_last(t_stack **lst);
+int lowest_content(t_stack **stack);
+void swap_a(t_stack *stack_a);
+void swap_b(t_stack *stack_b);
 void push(t_stack **from, t_stack **to, char name);
 void reverse_rotate(t_stack **stack, char name);
 void rotate(t_stack **stack, char name);
 void ft_lstadd_front(t_stack **lst, t_stack *new);
-int lowest_content(t_stack **stack);
-int max_content(t_stack **stack);
 int find_position(t_stack **stack, int content);
 void bring_to_top(t_stack **stack, int content);
 void sort_two_nbrs(t_stack **stack_a);

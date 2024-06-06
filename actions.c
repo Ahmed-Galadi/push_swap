@@ -6,11 +6,47 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:39:16 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/06 05:24:59 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/06 10:20:11 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void swap_a(t_stack *stack_a)
+{
+	t_stack *current;
+	int temp1;
+	int temp2;
+
+	if (!stack_a)
+		return;
+	current = stack_a;
+	temp1 = current->content;
+	temp2 = current->sorted_index;
+	current->content = current->next->content;
+	current->sorted_index = current->next->sorted_index;
+	current->next->content = temp1;
+	current->next->sorted_index = temp2;
+	ft_putstr("sa\n");
+}
+
+void swap_b(t_stack *stack_b)
+{
+	t_stack *current;
+	int temp1;
+	int temp2;
+
+	if (!stack_b)
+		return;
+	current = stack_b;
+	temp1 = current->content;
+	temp2 = current->sorted_index;
+	current->content = current->next->content;
+	current->sorted_index = current->next->sorted_index;
+	current->next->content = temp1;
+	current->next->sorted_index = temp2;
+	ft_putstr("sb\n");
+}
 
 static t_stack *get_prev_next(t_stack *stack)
 {
