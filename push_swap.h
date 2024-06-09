@@ -6,27 +6,27 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/06 12:03:05 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/09 00:50:22 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
+# include <stdio.h>
 
-#define ERROR_MSG "Error\n"
+# define ERROR_MSG "Error\n"
 
 typedef struct s_stack
 {
-	int content;
-	int sorted_index;
-	struct s_stack *prev;
-	struct s_stack *next;
-} t_stack;
+	int				content;
+	int				sorted_index;
+	struct s_stack	*prev;
+	struct s_stack	*next;
+}					t_stack;
 
 int		ft_isdigit(char character);
 char	**ft_split(char const *s, char c);
@@ -55,7 +55,7 @@ void	ft_lstadd_front(t_stack **lst, t_stack *new);
 int		find_position(t_stack **stack, int content);
 void	bring_to_top(t_stack **stack, int content);
 void	sort_two_nbrs(t_stack **stack_a);
-void	sort_three_nbrs(t_stack **stack_a);
+void	sort_three_nbrs(t_stack **stack_a, t_stack **stack_b);
 void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b);
 void	sort_five_nbrs(t_stack **stack_a, t_stack **stack_b);
 void	sort_all(t_stack **stack_a, t_stack **stack_b);

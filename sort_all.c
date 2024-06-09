@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 03:09:37 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/06 11:59:16 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/09 00:52:24 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 void	sort_two_nbrs(t_stack **stack_a)
 {
-	t_stack	*stack;
-	int		first_nbr;
-	int		second_nbr;
+	t_stack	*current;
+	int		tmp1;
+	int		tmp2;
 
-	stack = *stack_a;
-	first_nbr = stack->content;
-	second_nbr = stack->next->content;
-	if (first_nbr > second_nbr)
+	current = *stack_a;
+	if (current->content > current->next->content)
 		swap(*stack_a, 'a');
 }
 
-void	sort_three_nbrs(t_stack **stack_a)
+void	sort_three_nbrs(t_stack **stack_a, t_stack **stack_b)
 {
 	int		min_nbr;
 
 	min_nbr = lowest_content(stack_a);
 	bring_to_top(stack_a, min_nbr);
-	sort_two_nbrs(&((*stack_a)->next));
+	push(stack_a, stack_b, 'b');
+	sort_two_nbrs(stack_a);
+	push(stack_b, stack_a, 'a');
 }
 
 void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b)
@@ -41,7 +41,7 @@ void	sort_four_nbrs(t_stack **stack_a, t_stack **stack_b)
 	min_nbr = lowest_content(stack_a);
 	bring_to_top(stack_a, min_nbr);
 	push(stack_a, stack_b, 'b');
-	sort_three_nbrs(stack_a);
+	sort_three_nbrs(stack_a, stack_b);
 	push(stack_b, stack_a, 'a');
 }
 
@@ -66,7 +66,7 @@ void	sort_all(t_stack **stack_a, t_stack **stack_b)
 	if (stack_len == 2)
 		sort_two_nbrs(stack_a);
 	if (stack_len == 3)
-		sort_three_nbrs(stack_a);
+		sort_three_nbrs(stack_a, stack_b);
 	if (stack_len == 4)
 		sort_four_nbrs(stack_a, stack_b);
 	if (stack_len == 5)

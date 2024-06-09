@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   fill_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:33:49 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/04 00:48:59 by codespace        ###   ########.fr       */
+/*   Updated: 2024/06/09 01:42:10 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int find_sorted_index(int *int_arr, int content, int length)
+static int	find_sorted_index(int *int_arr, int content, int length)
 {
-	int index;
-	int *sorted_arr;
+	int		index;
+	int		*sorted_arr;
 
 	sorted_arr = int_arr;
 	sort_int_tab(sorted_arr, length);
@@ -29,21 +29,22 @@ static int find_sorted_index(int *int_arr, int content, int length)
 	return (-1);
 }
 
-void set_sorted_index(t_stack **stack, int *int_arr, int length)
+void	set_sorted_index(t_stack **stack, int *int_arr, int length)
 {
-	t_stack *current;
+	t_stack	*current;
 
 	current = *stack;
 	while (current)
 	{
-		current->sorted_index = find_sorted_index(int_arr, current->content, length);
+		current->sorted_index = find_sorted_index(
+				int_arr, current->content, length);
 		current = current->next;
 	}
 }
 
-t_stack *create_stack(int content, t_stack *prev)
+t_stack	*create_stack(int content, t_stack *prev)
 {
-	t_stack *output_stack;
+	t_stack	*output_stack;
 
 	output_stack = (t_stack *)malloc(sizeof(t_stack));
 	if (!output_stack)
@@ -54,11 +55,11 @@ t_stack *create_stack(int content, t_stack *prev)
 	return (output_stack);
 }
 
-t_stack *fill_a_stack(int *int_arr, int arr_len)
+t_stack	*fill_a_stack(int *int_arr, int arr_len)
 {
-	t_stack *output_stack;
-	t_stack *current;
-	int i;
+	t_stack	*output_stack;
+	t_stack	*current;
+	int		i;
 
 	output_stack = create_stack(int_arr[0], NULL);
 	if (!output_stack)
