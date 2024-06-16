@@ -6,16 +6,16 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 06:44:42 by agaladi           #+#    #+#             */
-/*   Updated: 2024/02/27 16:44:03 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/16 03:53:06 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isdigit(char character)
+int	ft_isdigit(char character)
 {
 	return (character >= '0' && character <= '9');
 }
 
-int		is_norep(int *nbrs)
+int	is_norep(int *nbrs)
 {
 	int		i;
 	int		j;
@@ -40,23 +40,25 @@ int		is_norep(int *nbrs)
 	return (1);
 }
 
-int 	check_input(char *input)
+int	check_input(char *input)
 {
 	int		i;
 
 	i = 0;
 	while (input[i])
 	{
-		if ((input[i] == '-' || input[i] == '+') && !ft_isdigit(input[i + 1]))
+		if ((input[i] == '-' || input[i] == '+')
+			&& !ft_isdigit(input[i + 1]))
 			return (0);
-		if (!ft_isdigit(input[i]) && input[i] != ' ' && input[i] != '+' && input[i] != '-')
+		if (!ft_isdigit(input[i]) && input[i] != ' '
+			&& input[i] != '+' && input[i] != '-')
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int 	is_valid_args(char **args, int size)
+int	is_valid_args(char **args, int size)
 {
 	int		i;
 
@@ -64,7 +66,7 @@ int 	is_valid_args(char **args, int size)
 	while (i < size)
 	{
 		if (!check_input(args[i]))
-				return (0);
+			return (0);
 		i++;
 	}
 	return (1);

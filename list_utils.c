@@ -6,16 +6,16 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:06:29 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/06 10:31:44 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/16 03:54:35 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int list_len(t_stack **stack)
+int	list_len(t_stack **stack)
 {
-	t_stack *current;
-	int len;
+	t_stack	*current;
+	int		len;
 
 	if (!*stack)
 		return (0);
@@ -29,9 +29,9 @@ int list_len(t_stack **stack)
 	return (len);
 }
 
-t_stack *lst_last(t_stack **lst)
+t_stack	*lst_last(t_stack **lst)
 {
-	t_stack *current;
+	t_stack	*current;
 
 	if (!*lst)
 		return (NULL);
@@ -41,10 +41,10 @@ t_stack *lst_last(t_stack **lst)
 	return (current);
 }
 
-int lowest_content(t_stack **stack)
+int	lowest_content(t_stack **stack)
 {
-	t_stack *current;
-	int output;
+	t_stack	*current;
+	int		output;
 
 	current = *stack;
 	output = current->content;
@@ -57,27 +57,27 @@ int lowest_content(t_stack **stack)
 	return (output);
 }
 
-int find_position(t_stack **stack, int content)
+int	find_position(t_stack **stack, int content)
 {
-	t_stack *current;
-	int output;
+	t_stack	*current;
+	int		output;
 
 	current = *stack;
 	output = 1;
 	while (current)
 	{
 		if (current->content == content)
-			break;
+			break ;
 		current = current->next;
 		output++;
 	}
 	return (output);
 }
 
-void ft_lstadd_front(t_stack **stack, t_stack *new)
+void	ft_lstadd_front(t_stack **stack, t_stack *new)
 {
 	if (!new || !stack)
-		return;
+		return ;
 	new->next = *stack;
 	new->prev = NULL;
 	*stack = new;

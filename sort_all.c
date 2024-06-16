@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 03:09:37 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/09 00:52:24 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/16 02:07:56 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void	sort_two_nbrs(t_stack **stack_a)
 {
 	t_stack	*current;
-	int		tmp1;
-	int		tmp2;
 
 	current = *stack_a;
 	if (current->content > current->next->content)

@@ -6,13 +6,13 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 00:09:33 by agaladi           #+#    #+#             */
-/*   Updated: 2024/04/16 19:21:18 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/16 04:34:50 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int		min_int_position(int *nbrs, int length, int index)
+static int	min_int_position(int *nbrs, int length, int index)
 {
 	int		min;
 	int		min_position;
@@ -33,7 +33,7 @@ static int		min_int_position(int *nbrs, int length, int index)
 	return (min_position + index);
 }
 
-void	sort_int_tab(int *nbrs, int	length)
+void	sort_int_tab(int *nbrs, int length)
 {
 	int		min_position;
 	int		tmp;
