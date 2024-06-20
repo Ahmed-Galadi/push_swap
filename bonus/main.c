@@ -6,13 +6,15 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 03:16:04 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/20 04:08:52 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/20 05:46:15 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../push_swap.h"
+#include <stdio.h>
 
 int main(int argc, char *argv[])
 {
+	
 	return (0);
 }

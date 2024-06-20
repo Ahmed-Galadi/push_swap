@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   checker_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/20 03:16:22 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/20 05:06:04 by agaladi          ###   ########.fr       */
+/*   Created: 2024/06/20 05:33:12 by agaladi           #+#    #+#             */
+/*   Updated: 2024/06/20 05:53:28 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "../push_swap.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <limits.h>
-
-typedef struct s_stack
+int		ft_strcmp(char *str1, char *str2)
 {
-	int				content;
-	int				sorted_index;
-	struct s_stack	*prev;
-	struct s_stack	*next;
-}					t_stack;
+	while (*str1)
+		if (*(str1++) != *(str2++))
+			return (0);
+	return (1);
+}
 
-void	checker_swap(t_stack *stack);
-void	checker_push(t_stack **from, t_stack **to);
-void	checker_rotate(t_stack **stack);
-void	checker_reverse_rotate(t_stack **stack);
 
-#endif
+
+void	execute_actions(stack_t **stack_a, stack_t **stack_b, char *action)
+{
+	if (ft_strcmp(action, "sa\n"))
+		checker_swap(*stack_a);
+	else if (ft_strcmp(action, "sb\n"))
+		checker_swap(*stack_a);
+	else if (ft_strcmp(action, "ss\n"))
+}

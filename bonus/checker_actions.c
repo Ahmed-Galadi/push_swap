@@ -6,11 +6,12 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 03:17:33 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/20 05:06:09 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/20 05:23:43 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../push_swap.h"
+
 
 void	checker_swap(t_stack *stack)
 {
