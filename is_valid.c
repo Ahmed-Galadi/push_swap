@@ -6,9 +6,11 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 06:44:42 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/16 03:53:06 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/20 02:40:22 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 int	ft_isdigit(char character)
 {
@@ -48,7 +50,7 @@ int	check_input(char *input)
 	while (input[i])
 	{
 		if ((input[i] == '-' || input[i] == '+')
-			&& !ft_isdigit(input[i + 1]))
+			&& (ft_isdigit(input[i - 1]) || !ft_isdigit(input[i + 1])))
 			return (0);
 		if (!ft_isdigit(input[i]) && input[i] != ' '
 			&& input[i] != '+' && input[i] != '-')

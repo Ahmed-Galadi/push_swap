@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/09 00:50:22 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/20 02:43:06 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ void	sort_all(t_stack **stack_a, t_stack **stack_b);
 void	sort_int_tab(int *nbrs, int length);
 void	sort_stack(t_stack **stack_a, t_stack **stack_b);
 void	set_sorted_index(t_stack **stack, int *int_arr, int length);
+int		ft_isspace(char c);
 
 #endif

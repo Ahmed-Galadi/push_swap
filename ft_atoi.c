@@ -6,13 +6,13 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 04:35:35 by agaladi           #+#    #+#             */
-/*   Updated: 2024/04/02 03:16:24 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/20 01:18:11 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_isspace(char c)
+int	ft_isspace(char c)
 {
 	return (c == ' ' || c == '\n' || c == '\t'
 		||c == '\v' || c == '\f' || c == '\r');
