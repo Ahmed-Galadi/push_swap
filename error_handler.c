@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:14:08 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/16 03:49:59 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/27 17:33:22 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ void	error_accured(void)
 
 void	input_checker(int argc, char *argv[])
 {
+	if (argc == 1)
+		exit(EXIT_FAILURE);
+	if (!argv[1])
+		error_accured();
+	if (argv[1][0] == '\0')
+		error_accured();
 	if (argc == 2)
 		if (!check_input(argv[1]))
 			error_accured();

@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 06:44:42 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/20 02:40:22 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/27 17:21:54 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,24 @@ int	is_norep(int *nbrs)
 	return (1);
 }
 
+int	has_nbrs(char *input)
+{
+	int		i;
+
+	i = 0;
+	while (input[i])
+		if (ft_isdigit(input[i++]))
+			return (1);
+	return (0);
+}
+
 int	check_input(char *input)
 {
 	int		i;
 
 	i = 0;
+	if (!has_nbrs(input))
+		error_accured();
 	while (input[i])
 	{
 		if ((input[i] == '-' || input[i] == '+')

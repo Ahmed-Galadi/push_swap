@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 04:35:35 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/20 01:18:11 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/27 15:40:32 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	if (output > INT_MAX && sign == 1)
-		exit(EXIT_FAILURE);
+		error_accured();
 	if ((output * -1) < INT_MIN && sign == -1)
-		exit(EXIT_SUCCESS);
+		error_accured();
 	return (output * sign);
 }

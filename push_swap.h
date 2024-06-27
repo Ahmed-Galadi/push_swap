@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 03:55:59 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/20 05:04:25 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/21 04:32:55 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_stack
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }					t_stack;
-
+// mandatory functions
 int		ft_isdigit(char character);
 char	**ft_split(char const *s, char c);
 int		is_norep(int *nbrs);

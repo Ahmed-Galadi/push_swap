@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 22:27:33 by agaladi           #+#    #+#             */
-/*   Updated: 2024/06/16 03:50:37 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/06/27 16:53:56 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	ret_arr = (char **)malloc((words_count + 1) * sizeof(char *));
 	if (!ret_arr)
-		return (NULL);
+		error_accured();
 	while (i < words_count)
 	{
 		while (*s == c)
@@ -92,7 +92,7 @@ char	**ft_split(char const *s, char c)
 		{
 			free_arrs(ret_arr, i);
 			free(ret_arr);
-			return (NULL);
+			error_accured();
 		}
 		i++;
 	}
